@@ -1,19 +1,31 @@
-// Prepared examples explain the product; this page does not perform live semantic search.
+// Prepared examples from one fictional document. No live retrieval happens here.
 const examples = {
-  cancel: [
-    { name: 'Master-Service-Agreement.pdf', type: 'pdf', label: 'PDF', location: 'Page 42', passage: 'Either party may discontinue this agreement prior to the expiration date without incurring an early cancellation charge, provided written notice is delivered at least thirty days in advance.', highlight: 'discontinue this agreement prior to the expiration date without incurring an early cancellation charge', before: '12. Termination\n12.1 Either party may terminate this agreement upon material breach, subject to the notice and cure periods set out below.', after: '12.3 All obligations accrued before the effective date of termination remain payable in accordance with this agreement.' },
-    { name: 'Customer-Amendment.docx', type: 'word', label: 'DOC', location: 'Source passage', passage: 'Customer may elect not to continue the service without additional fees when the revised service terms materially reduce the agreed scope of delivery.', highlight: 'elect not to continue the service without additional fees', before: '8. Service amendments\n8.2 Changes to the scope of service will be communicated in writing before taking effect.', after: '8.4 Customer must provide written notice of this election within thirty days of receiving the revised terms.' },
-  ],
-  delay: [
-    { name: 'Customer-Amendment.docx', type: 'word', label: 'DOC', location: 'Source passage', passage: 'Where the supplier misses a delivery milestone, the customer may request that the acceptance period be extended by an equivalent number of business days.', highlight: 'the customer may request that the acceptance period be extended', before: '4. Delivery and acceptance\nThe parties will agree on a schedule for each deliverable before work begins.', after: 'Any revised acceptance date must be recorded in writing and shared with the project owners.' },
-    { name: 'Service-Policy.md', type: 'text', label: 'MD', location: 'Heading: Delivery exceptions', passage: 'If a shipment arrives later than the agreed date, buyers can ask for more time to complete their review before the order is deemed accepted.', highlight: 'buyers can ask for more time to complete their review', before: 'Delivery exceptions\nThe standard review window begins when the complete order is received.', after: 'Support should record the revised review deadline and notify the assigned account owner.' },
-  ],
-  data: [
-    { name: 'Master-Service-Agreement.pdf', type: 'pdf', label: 'PDF', location: 'Page 38', passage: 'Within thirty days of termination, the supplier shall return or securely erase all customer records in its possession, except where retention is required by applicable law.', highlight: 'return or securely erase all customer records', before: '10. Customer records\nCustomer retains ownership of all records supplied during the term of this agreement.', after: 'Upon request, the supplier shall provide written confirmation that the required disposal has been completed.' },
-    { name: 'Service-Policy.md', type: 'text', label: 'MD', location: 'Heading: Account closure', passage: 'Following account closure, a copy of the organization’s files is available for export for fourteen days. After this period, the files are removed from active systems.', highlight: 'the files are removed from active systems', before: 'Account closure\nAn administrator can request closure after exporting the organization’s required records.', after: 'Requests to reopen an account must be submitted before the export period ends.' },
-  ],
+  termination: {
+    heading: 'Termination', page: 37, section: '12.2',
+    passage: 'In the event Customer elects to discontinue Services prior to expiration of the Initial Term, Customer shall pay an amount equal to the remaining monthly charges.',
+    highlight: 'discontinue Services prior to expiration of the Initial Term',
+    before: '12. Termination\n12.1 The parties may end this agreement in accordance with the conditions below.',
+    after: '12.3 The obligations set out in this section are subject to the exceptions in Section 13.',
+    note: '“Early termination fees” never appears in this passage. The meaning does.',
+  },
+  liability: {
+    heading: 'Customer data', page: 28, section: '9.4',
+    passage: 'Provider shall indemnify Customer against losses arising from unauthorized disclosure or destruction of Customer Data.',
+    highlight: 'indemnify Customer against losses arising from unauthorized disclosure or destruction of Customer Data',
+    before: '9. Customer data\n9.3 The parties will notify each other promptly when an incident affecting Customer Data is identified.',
+    after: '9.5 The obligations in this section remain subject to the limitations and exclusions stated elsewhere in this agreement.',
+    note: 'Your question and the source use different words. The result points to the related idea.',
+  },
+  notice: {
+    heading: 'Written notification', page: 38, section: '12.5',
+    passage: 'A party electing to discontinue Services must deliver written notification to the other party no fewer than thirty calendar days before the intended effective date.',
+    highlight: 'deliver written notification to the other party no fewer than thirty calendar days',
+    before: '12. Written notification\n12.4 All communications under this section must be delivered to the designated contract representative.',
+    after: '12.6 Receipt of notification does not waive any obligations that have already accrued.',
+    note: '“Notice period” can be expressed as “written notification” and “thirty calendar days.”',
+  },
 };
-let activeExample = 'cancel';
+let activeExample = 'termination';
 const query = document.querySelector('#example-query');
 const results = document.querySelector('#results');
 const dialog = document.querySelector('#source-dialog');
@@ -24,32 +36,34 @@ function element(tag, className, text) {
   return el;
 }
 function renderExample(key) {
-  if (!examples[key]) return;
+  const item = examples[key];
+  if (!item) return;
   activeExample = key;
   query.value = key;
   document.querySelectorAll('[data-example]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.example === key)));
-  results.replaceChildren(...examples[key].map((item, index) => {
-    const card = element('article', 'result');
-    const top = element('div', 'result-top');
-    const detail = element('div');
-    detail.append(element('h3', '', item.name), element('p', '', item.location));
-    top.append(element('span', `file-icon ${item.type}`, item.label), detail, element('span', 'relevance', 'High relevance'));
-    const quote = element('blockquote');
-    const [before, after] = item.passage.split(item.highlight);
-    quote.append(document.createTextNode('“' + before), element('mark', '', item.highlight), document.createTextNode(after + '”'));
-    const bottom = element('div', 'result-bottom');
-    const button = element('button', 'text-link', 'View in document ↗');
-    button.type = 'button';
-    button.dataset.source = index;
-    bottom.append(element('span', '', 'Original source passage'), button);
-    card.append(top, quote, bottom);
-    return card;
-  }));
-  document.querySelector('#results-status').textContent = `2 relevant passages · ${key === 'cancel' ? 'cancellation' : key === 'delay' ? 'delivery delays' : 'data retention'}`;
+  const card = element('article', 'result');
+  const top = element('div', 'result-top');
+  const detail = element('div');
+  detail.append(element('h3', '', `${item.heading} — Page ${item.page}`), element('p', '', 'Master-Service-Agreement.pdf'));
+  const marker = element('span', 'passage-marker', '↳');
+  marker.setAttribute('aria-hidden', 'true');
+  top.append(marker, detail, element('span', 'relevance', 'High relevance'));
+  const quote = element('blockquote');
+  const [before, after] = item.passage.split(item.highlight);
+  quote.append(document.createTextNode('“' + before), element('mark', '', item.highlight), document.createTextNode(after + '”'));
+  const bottom = element('div', 'result-bottom');
+  const button = element('button', 'text-link', 'View in document ↗');
+  button.type = 'button';
+  button.dataset.source = '';
+  bottom.append(element('span', '', `Section ${item.section} · Original source passage`), button);
+  card.append(top, quote, bottom);
+  results.replaceChildren(card);
+  document.querySelector('#results-status').textContent = `Relevant passage found · Page ${item.page}`;
+  document.querySelector('#meaning-note').textContent = item.note;
 }
 function openSource(item) {
-  document.querySelector('#source-title').textContent = item.name;
-  document.querySelector('#source-location').textContent = item.location;
+  document.querySelector('#source-title').textContent = 'Master-Service-Agreement.pdf';
+  document.querySelector('#source-location').textContent = `${item.heading} · Page ${item.page} · Section ${item.section}`;
   document.querySelector('#source-context-before').textContent = item.before;
   document.querySelector('#source-passage').textContent = item.passage;
   document.querySelector('#source-context-after').textContent = item.after;
@@ -57,12 +71,9 @@ function openSource(item) {
 }
 query.addEventListener('change', () => renderExample(query.value));
 document.querySelectorAll('[data-example]').forEach(button => button.addEventListener('click', () => renderExample(button.dataset.example)));
-results.addEventListener('click', event => {
-  const button = event.target.closest('[data-source]');
-  if (button) openSource(examples[activeExample][Number(button.dataset.source)]);
-});
-document.querySelector('#evidence-source').addEventListener('click', () => openSource(examples.cancel[0]));
-document.querySelector('#collection-example').addEventListener('click', () => renderExample('delay'));
+results.addEventListener('click', event => { if (event.target.closest('[data-source]')) openSource(examples[activeExample]); });
+document.querySelector('#evidence-source').addEventListener('click', () => openSource(examples.termination));
+document.querySelector('#liability-example').addEventListener('click', () => renderExample('liability'));
 document.querySelector('.close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => {
   if (event.target === dialog) {

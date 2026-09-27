@@ -2,8 +2,8 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 const root = resolve(process.env.SERVE_DIST === '1' ? 'dist' : '.');
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml' };
-const files = new Set(['index.html', 'styles.css', 'script.js', 'robots.txt', 'sitemap.xml', '404.html', 'privacy/index.html', 'terms/index.html']);
+const types = { '.ico': 'image/x-icon', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml' };
+const files = new Set(['favicon.ico', 'index.html', 'styles.css', 'script.js', 'robots.txt', 'sitemap.xml', '404.html', 'privacy/index.html', 'terms/index.html']);
 createServer(async (req, res) => {
   try {
     let path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
