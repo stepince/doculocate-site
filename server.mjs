@@ -15,7 +15,11 @@ createServer(async (req, res) => {
     const file = resolve(root, '.' + path);
     const relative = file.slice(root.length + 1);
     if (!file.startsWith(root + sep) || (!files.has(relative) && !/^assets\/[a-zA-Z0-9_-]+\.(svg|png)$/.test(relative))) throw new Error('Not found');
-    const data = await readFile(file);
+    let data = await readFile(file);
+    // Local development opens the running app; production output retains its configured URL.
+    if (relative === 'index.html' && process.env.SERVE_DIST !== '1') {
+      data = Buffer.from(data.toString().replaceAll('href="https://doculocate.com/" data-app-link', 'href="http://localhost:4100/" data-app-link'));
+    }
     res.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream', 'X-Content-Type-Options': 'nosniff' }).end(data);
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
