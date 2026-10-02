@@ -26,8 +26,8 @@ The build replaces all three app links in its output. Secondary links open the o
 ## Content
 
 - `index.html`: hero, one-document demo, keyword comparison, three-step workflow, semantic Ctrl+F example, grounded results, four use cases, privacy, and ten FAQ answers.
-- `script.js`: four fictional file examples (PDF, DOCX, XLSX, TXT), each with Hybrid, Semantic, and Lexical queries. Results highlight a passage or spreadsheet row in the inline viewer. An optional answer example links to its supporting source. No live retrieval or uploads occur in the demo.
-- `styles.css`: responsive site styles; new positioning styles follow the existing base styles.
+- `script.js`: the interactive demo, built to look and behave like the application's own window. Four fictional files (PDF, DOCX, XLSX, TXT) each have Hybrid, Semantic, and Lexical queries and three ranked results with relevance badges and scores. The demo has the app's header (example picker and search-type pill), search bar (Match case, previous/next match with a count, Search, Clear, Reset), a viewer (PDF pages, formatted DOCX, spreadsheet grid with sheet tabs, plain text) with a drag-to-resize handle, an optional Answer callout, and result cards. Selecting a result or the Answer highlights its source in the viewer and scrolls to it; selecting it again turns the highlight off. Clear removes results and highlights but keeps the query; Reset restores the starting state. No live retrieval, uploads, or AI calls occur in the demo.
+- `styles.css`: responsive site styles; new positioning styles follow the existing base styles. The demo's styles are one readable block at the end of the file, namespaced `ad-` and `.app-demo`, with values taken from the application's stylesheet so the demo matches the product.
 - `privacy/` and `terms/`: current processing details and website terms.
 - `assets/social.svg` and `assets/social.png`: social preview artwork and rendered image.
 
