@@ -182,6 +182,49 @@ export const pages = [
     related: ['ctrl-f-alternative', 'search-pdf']
   }  ,
   {
+    slug: 'search-contracts',
+    nav: 'Search contracts',
+    title: 'Find Clauses in a Contract by Meaning | DocuLocate',
+    description: 'Search a contract in plain language and jump to the clause you mean: termination, liability, payment, renewal. Read the source passage in context.',
+    eyebrow: 'GUIDE',
+    h1: 'Find clauses in a contract by meaning',
+    lead: 'You know what you need to find out: can I leave early, who is liable, when is payment due. You don’t know which section, or what words the drafter used. Describe the question, and DocuLocate highlights the passage that addresses it.',
+    sections: [
+      {
+        h2: 'Why contracts resist keyword search',
+        html: `<p>Contracts use formal, defined, and sometimes indirect language. “Cancel” may appear as “terminate,” “discontinue,” or “elect not to renew.” “Who pays if data is lost” may sit inside an indemnity clause that never uses those words.</p>
+<p>Exact-match search forces you to guess the drafter’s vocabulary. Searching by meaning lets you start from your own question.</p>`
+      },
+      {
+        h2: 'Questions people ask of contracts',
+        html: `<ul><li>“What happens if I end the agreement early?”</li><li>“Who is responsible if customer data is lost?”</li><li>“When does a payment become overdue, and what is the penalty?”</li><li>“Does this renew automatically?”</li><li>“What are the confidentiality obligations?”</li></ul>
+<p>Each of these can lead to a clause that doesn’t contain the words in the question.</p>`
+      },
+      {
+        h2: 'Example: liability for lost data',
+        html: `<div class="seo-example"><p class="mini-label">YOU SEARCH</p><p class="seo-query">Who is responsible if customer data is lost?</p><p class="mini-label">POSSIBLE SOURCE PASSAGE · PAGE 28 · ILLUSTRATIVE</p><blockquote>“Provider shall <mark>indemnify Customer against losses arising from unauthorized disclosure or destruction of Customer Data.</mark>”</blockquote><span class="source-line">Illustrative clause · review the full terms in context</span></div>
+<p>The result is a place to start reading, not a conclusion. Related terms, such as limits of liability or exceptions, often sit in other sections.</p>`
+      },
+      {
+        h2: 'How to use it',
+        html: `<ol><li>Upload the contract as a PDF or Word (.docx) file.</li><li>Describe the clause or situation you are looking for.</li><li>Select a result to highlight it in the viewer, then read the surrounding text.</li><li>Search again for related terms: exceptions, definitions, caps, notice periods.</li></ol>
+<p>Use <strong>Lexical</strong> search with Match case for defined terms and exact capitalised phrases. Hybrid, the default, is a good starting point for everything else.</p>`
+      },
+      {
+        h2: 'What it is not',
+        html: `<ul><li><strong>Not legal advice.</strong> DocuLocate finds passages. It does not interpret them or tell you what a contract means for you. For decisions that matter, have a qualified professional review it.</li><li><strong>Relevance is a guide.</strong> A highest-ranked result may not be the controlling clause. Read the whole section.</li><li><strong>PDFs need extractable text.</strong> Image-only scans need OCR first, and DocuLocate does not perform OCR.</li><li><strong>One document at a time.</strong></li></ul>
+<p>Contracts are often confidential. Read the <a href="/privacy/">privacy details</a> before uploading one.</p>`
+      }
+    ],
+    faq: [
+      ['Does DocuLocate review or summarize contracts?', 'No. It locates the passages that match your question so you can read them. When an AI provider is configured, it can show a short generated answer linked to its supporting passage, and you should check that passage yourself.'],
+      ['Which contract file types work?', 'PDF with extractable text and Word (.docx) files both work, along with plain text. Image-only scans need OCR first.'],
+      ['Can it find a clause if I don’t know the legal term?', 'Often, yes. Describe the situation in plain language, and the search looks for passages with related meaning. If results look off, rephrase or try Semantic or Lexical mode.'],
+      ['Is it safe to upload a confidential contract?', 'Check the privacy details before you upload. The active document is processed on the application server, recent-file history can save a copy in your browser, and an optional AI provider may receive your query and candidate passages.']
+    ],
+    related: ['search-pdf', 'semantic-document-search']
+  },
+  {
     slug: 'faq',
     nav: 'FAQ',
     header: false,
