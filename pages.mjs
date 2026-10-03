@@ -27,7 +27,7 @@ export const pages = [
         html: `<p>Meaning-based search is not always the right choice. Use exact matching when you are looking for:</p>
 <ul><li>a name, ID, invoice number, or section number</li><li>a quoted phrase or a defined term</li><li>a specific capitalization or spelling</li></ul>
 <p>DocuLocate offers three search types so you can pick the right one for the question:</p>
-<ul><li><strong>Hybrid</strong> (the default) combines meaning and keyword matches.</li><li><strong>Semantic</strong> focuses on meaning.</li><li><strong>Lexical</strong> focuses on words, with an optional Match case control.</li></ul>
+<ul><li><strong>Hybrid</strong> (the default) combines meaning and keyword matches.</li><li><strong>Semantic</strong> focuses on meaning.</li><li><strong>Lexical</strong> is Ctrl+F inside DocuLocate: every occurrence of the text you type, in order, with an optional Match case control.</li></ul>
 <p>Switching modes does not change the active document.</p>`
       },
       {
@@ -35,7 +35,7 @@ export const pages = [
         html: `<p>DocuLocate searches <strong>one document at a time</strong>. Upload a PDF, Word (.docx), text, Excel (.xlsx or .xls), or CSV file, then describe what you need.</p>
 <ul><li>Results show the matching passage or spreadsheet row, with a relevance indication.</li><li>Selecting a result highlights its location in the viewer, so you can read it in context.</li><li>Weaker results are shown separately as lower-confidence matches. If there is no strong match, the app says so.</li></ul>
 <p>Relevance is a guide, not a verdict. Always read the source passage before you rely on it.</p>
-<p>When an AI provider is configured, the app can also show a short generated answer linked to its supporting passage. This is optional, and search works without it. Read the <a href="/privacy/">privacy details</a> to see what is sent to a provider.</p>`
+<p>For a question like “who is the tenant?”, DocuLocate can also show a short <strong>answer taken word for word from your document</strong>, linked to the passage it came from. That needs no AI and no key, and when the app is not confident it shows no answer (the Answer label appears struck through) rather than guessing. If you choose to add your own AI provider, it can write answers instead. Read the <a href="/privacy/">privacy details</a> to see what is sent to a provider.</p>`
       },
       {
         h2: 'What to know before you start',
@@ -44,7 +44,7 @@ export const pages = [
     ],
     faq: [
       ['What is semantic document search?', 'Semantic document search finds passages based on their meaning rather than exact wording. You describe what you want to find, and the search looks for related information in the document.'],
-      ['Is semantic search the same as AI chat?', 'No. Semantic search returns the passages in your document that best match your query, so you can read the source yourself. DocuLocate can optionally show a short generated answer when an AI provider is configured, but it is not a general-purpose chat tool.'],
+      ['Is semantic search the same as AI chat?', 'No. Semantic search returns the passages in your document that best match your query, so you can read the source yourself. DocuLocate can show a short answer taken word for word from the document (no AI needed), and an AI-written answer if you add your own provider, but it is not a general-purpose chat tool.'],
       ['Do I need to use the same words as the document?', 'No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages.'],
       ['Does semantic search replace keyword search?', 'Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only.']
     ],
@@ -73,16 +73,16 @@ export const pages = [
       {
         h2: 'Ctrl+F vs. DocuLocate',
         html: `<div class="seo-table-wrap"><table class="seo-table"><thead><tr><th scope="col"></th><th scope="col">Ctrl+F</th><th scope="col">DocuLocate</th></tr></thead><tbody>
-<tr><th scope="row">Finds</th><td>Exact text you type</td><td>Passages related to what you describe, plus keyword matches in Hybrid or Lexical mode</td></tr>
+<tr><th scope="row">Finds</th><td>Exact text you type</td><td>Passages related to what you describe, plus keyword matches in Hybrid mode. Lexical mode finds exact text like Ctrl+F.</td></tr>
 <tr><th scope="row">Best for</th><td>Known words, names, numbers</td><td>Questions where you don’t know the wording</td></tr>
-<tr><th scope="row">Result</th><td>Every occurrence in order</td><td>Passages ranked by relevance, with weaker matches separated</td></tr>
+<tr><th scope="row">Result</th><td>Every occurrence in order</td><td>Passages ranked by relevance, with weaker matches separated (Lexical mode lists every occurrence in order)</td></tr>
 <tr><th scope="row">Formats</th><td>Depends on the app you use</td><td>PDF, DOCX, TXT, XLSX/XLS, CSV</td></tr>
 <tr><th scope="row">Source</th><td>Highlights the word</td><td>Highlights the passage or spreadsheet row in a viewer</td></tr>
 </tbody></table></div>`
       },
       {
         h2: 'Keep Ctrl+F for what it does best',
-        html: `<p>You do not have to give up exact search. When you need a specific name, number, or phrase, choose <strong>Lexical</strong> search in DocuLocate and turn on <strong>Match case</strong> if capitalization matters. For everything else, <strong>Hybrid</strong>, the default, combines meaning and keyword matches.</p>`
+        html: `<p>You do not have to give up exact search. When you need a specific name, number, or phrase, choose <strong>Lexical</strong> search in DocuLocate. It works like Ctrl+F: it finds every occurrence of the text, including part of a word, and highlights each one in the viewer. Turn on <strong>Match case</strong> if capitalization matters. For everything else, <strong>Hybrid</strong>, the default, combines meaning and keyword matches.</p>`
       },
       {
         h2: 'Queries that work well',
@@ -91,9 +91,9 @@ export const pages = [
       }
     ],
     faq: [
-      ['Is DocuLocate a replacement for Ctrl+F?', 'It is an alternative for the moments when exact text search fails. DocuLocate also has a Lexical mode for keyword searches, but it searches one uploaded document in its own viewer, not the page you happen to have open.'],
+      ['Is DocuLocate a replacement for Ctrl+F?', 'It is an alternative for the moments when exact text search fails. DocuLocate’s Lexical mode works like Ctrl+F for an uploaded document: every occurrence, in order, highlighted in its own viewer. It searches one uploaded document, not the page you happen to have open.'],
       ['Can it search PDFs and spreadsheets?', 'Yes. The app accepts PDF, Word (.docx), plain text, Excel (.xlsx and .xls), and CSV files. PDFs need extractable text, because image-only scans need OCR first and DocuLocate does not perform OCR.'],
-      ['What if the answer isn’t in the document?', 'The app can report that no strong match was found and show lower-confidence matches separately. Try rephrasing the query or changing the search type, then review the source yourself.']
+      ['What if the answer isn’t in the document?', 'The app can report that no strong match was found and show lower-confidence matches separately. When a question has no answer, the Answer label is shown struck through (hover it for the reason). Try rephrasing the query or changing the search type, then review the source yourself.']
     ],
     related: ['semantic-document-search', 'search-pdf']
   },
@@ -123,7 +123,7 @@ export const pages = [
       },
       {
         h2: 'Choosing a search type for a PDF',
-        html: `<ul><li><strong>Hybrid</strong> is the default and works well for most questions.</li><li><strong>Semantic</strong> helps when you can describe an idea but not the wording.</li><li><strong>Lexical</strong> suits exact terms, such as a defined term, a name, or a section number. Turn on Match case when capitalization matters.</li></ul>`
+        html: `<ul><li><strong>Hybrid</strong> is the default and works well for most questions.</li><li><strong>Semantic</strong> helps when you can describe an idea but not the wording.</li><li><strong>Lexical</strong> works like Ctrl+F and suits exact terms, such as a defined term, a name, or a section number. It finds every occurrence, including part of a word. Turn on Match case when capitalization matters.</li></ul>`
       },
       {
         h2: 'Limits to know about',
@@ -135,7 +135,7 @@ export const pages = [
       ['Can I search a scanned PDF?', 'Only if it contains extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.'],
       ['Will it show me the page the result came from?', 'Yes. Selecting a result jumps to its location in the built-in page viewer and highlights the passage. Results show the PDF page when it is available.'],
       ['Can I search several PDFs at once?', 'No. DocuLocate searches one active document at a time. Replace the document to search another file.'],
-      ['Is this a chat-with-PDF tool?', 'No. You search, review the matching passages, and inspect the source. When an AI provider is configured, the app can show a short generated answer linked to its supporting passage, but there is no general chat conversation.']
+      ['Is this a chat-with-PDF tool?', 'No. You search, review the matching passages, and inspect the source. The app can show a short answer taken word for word from the document (no AI needed), or an AI-written one if you add your own provider, but there is no general chat conversation.']
     ],
     related: ['semantic-document-search', 'search-excel-csv']
   },
@@ -165,7 +165,7 @@ export const pages = [
       },
       {
         h2: 'Tips for better spreadsheet searches',
-        html: `<ul><li><strong>Describe the row you want,</strong> not a single column header.</li><li><strong>Use Lexical</strong> for exact codes, SKUs, IDs, or names, and turn on Match case if it matters.</li><li><strong>Check neighbouring rows and other sheets.</strong> A matching row can depend on a note or condition elsewhere in the workbook.</li></ul>`
+        html: `<ul><li><strong>Describe the row you want,</strong> not a single column header.</li><li><strong>Use Lexical</strong> for exact codes, SKUs, IDs, or names. It works like Ctrl+F on the cell text, and you can turn on Match case if it matters.</li><li><strong>Check neighbouring rows and other sheets.</strong> A matching row can depend on a note or condition elsewhere in the workbook.</li></ul>`
       },
       {
         h2: 'Limits to know about',
@@ -177,7 +177,7 @@ export const pages = [
       ['Which spreadsheet formats work?', 'The app’s file picker accepts Excel (.xlsx and .xls) and CSV files.'],
       ['Can it search across all the sheets in a workbook?', 'A workbook can contain multiple sheets, and the viewer shows them as tabs. Results show the sheet and row when available. You search one file at a time.'],
       ['Can DocuLocate calculate totals or build reports?', 'No. It locates relevant rows and passages. It does not calculate, edit, or report on your data.'],
-      ['What if I only know the exact code or ID?', 'Use Lexical search, which focuses on keyword matches, and turn on Match case if capitalization matters.']
+      ['What if I only know the exact code or ID?', 'Use Lexical search. It works like Ctrl+F: it finds every cell containing the code, including part of it, and you can turn on Match case if capitalization matters.']
     ],
     related: ['ctrl-f-alternative', 'search-pdf']
   }  ,
@@ -208,7 +208,7 @@ export const pages = [
       {
         h2: 'How to use it',
         html: `<ol><li>Upload the contract as a PDF or Word (.docx) file.</li><li>Describe the clause or situation you are looking for.</li><li>Select a result to highlight it in the viewer, then read the surrounding text.</li><li>Search again for related terms: exceptions, definitions, caps, notice periods.</li></ol>
-<p>Use <strong>Lexical</strong> search with Match case for defined terms and exact capitalised phrases. Hybrid, the default, is a good starting point for everything else.</p>`
+<p>Use <strong>Lexical</strong> search (Ctrl+F style, every occurrence) with Match case for defined terms and exact capitalised phrases. Hybrid, the default, is a good starting point for everything else.</p>`
       },
       {
         h2: 'What it is not',
@@ -217,10 +217,10 @@ export const pages = [
       }
     ],
     faq: [
-      ['Does DocuLocate review or summarize contracts?', 'No. It locates the passages that match your question so you can read them. When an AI provider is configured, it can show a short generated answer linked to its supporting passage, and you should check that passage yourself.'],
+      ['Does DocuLocate review or summarize contracts?', 'No. It locates the passages that match your question so you can read them. It can also show a short answer taken word for word from the contract (no AI needed), or an AI-written one if you add your own provider, and you should check the passage it points to yourself.'],
       ['Which contract file types work?', 'PDF with extractable text and Word (.docx) files both work, along with plain text. Image-only scans need OCR first.'],
       ['Can it find a clause if I don’t know the legal term?', 'Often, yes. Describe the situation in plain language, and the search looks for passages with related meaning. If results look off, rephrase or try Semantic or Lexical mode.'],
-      ['Is it safe to upload a confidential contract?', 'Check the privacy details before you upload. The active document is processed on the application server, recent-file history can save a copy in your browser, and an optional AI provider may receive your query and candidate passages.']
+      ['Is it safe to upload a confidential contract?', 'Check the privacy details before you upload. The active document is processed on the application server and held in its memory, private to your browser or account, recent-file history can save a copy in your browser, and only if you add your own AI provider does that provider receive your query and candidate passages.']
     ],
     related: ['search-pdf', 'semantic-document-search']
   },
@@ -254,7 +254,7 @@ export const pages = [
       ],
       [
             "Does DocuLocate generate answers or find source text?",
-            "Source passages are the core results. With an AI provider configured, DocuLocate can also show a short generated answer linked to the top supporting passage. You can inspect that passage in the document viewer. Without a provider key, search still works."
+            "Source passages are the core results. DocuLocate can also show a short answer taken word for word from your document, linked to the passage it came from, with no AI or key needed. It only answers when it is confident; otherwise the Answer label is struck through. If you add your own AI provider, it can write answers instead. Either way, inspect the passage in the document viewer."
       ],
       [
             "Can I search PDFs?",
@@ -262,15 +262,23 @@ export const pages = [
       ],
       [
             "Is DocuLocate a “chat with PDF” tool?",
-            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. An optional generated answer can help summarize a match, but there is no general-purpose chat conversation."
+            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. A short answer, taken from the document or written by an AI provider you add, can help with a match, but there is no general-purpose chat conversation."
       ],
       [
             "What do Hybrid, Semantic, and Lexical mean?",
-            "Hybrid, the default, combines meaning and keyword matches. Semantic focuses on meaning. Lexical focuses on words, with an optional Match case control."
+            "Hybrid, the default, combines meaning and keyword matches. Semantic focuses on meaning. Lexical works like Ctrl+F: every occurrence of the text you type, in order, with an optional Match case control."
       ],
       [
             "Are recent documents saved?",
-            "The active document is held in server memory. Separately, browser history lists up to five recent uploads and attempts to cache file contents for files up to 3 MiB, subject to browser storage limits. Larger files may be listed but require uploading again. Reset does not clear this history; use Clear history."
+            "The active document is held in server memory. Separately, browser history lists up to five recent uploads and attempts to cache file contents for files up to 3 MiB, subject to browser storage limits. Larger files may be listed but require uploading again. DocuLocate always opens at the empty upload screen; pick a recent file from History to bring it back. Reset does not clear this history; use Clear history."
+      ],
+      [
+            "Do I need to sign in?",
+            "No. You can upload a document, search it and get answers without an account. Sign in only if you want to use your own AI provider, which needs an account so your key can be stored for you. Without signing in, your document is private to your browser."
+      ],
+      [
+            "What does a struck-through Answer mean?",
+            "A question was asked but there is no answer to show. DocuLocate would rather show nothing than guess, so it leaves the Answer label struck through when it is not confident, when the document says more than one thing, or when the passages do not state it directly. Hover the label for the reason, and read the matching passages below it."
       ],
       [
             "What if there is no good match?",

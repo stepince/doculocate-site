@@ -5,7 +5,7 @@ const samples = {
   pdf: {
     name: 'Master-Service-Agreement.pdf', type: 'PDF', icon: '', meta: '48 pages · 612 KB', unit: 'passage',
     answer: 'Ending the services before the initial term expires requires payment of the remaining monthly charges, subject to the agreement’s exceptions.',
-    queries: { hybrid: 'early termination charges', semantic: 'What happens if I end the agreement early?', lexical: 'remaining monthly charges' },
+    queries: { hybrid: 'early termination charges', semantic: 'What happens if I end the agreement early?', lexical: 'terminat' },
     view: { kind: 'pages', pages: [
       { n: 36, blocks: [
         { k: 'h', t: '11. Payment terms' },
@@ -28,7 +28,7 @@ const samples = {
   docx: {
     name: 'Purchase-Policy.docx', type: 'DOC', icon: 'word', meta: '34 KB', unit: 'passage',
     answer: 'Purchases above $2,500 need written authorization from the department manager before the order is placed.',
-    queries: { hybrid: 'purchase approval threshold', semantic: 'When do I need permission before buying something?', lexical: 'written authorization' },
+    queries: { hybrid: 'purchase approval threshold', semantic: 'When do I need permission before buying something?', lexical: 'purchase' },
     view: { kind: 'doc', blocks: [
       { k: 'h1', t: 'Purchasing policy' },
       { k: 'h2', t: '1. Purpose' },
@@ -54,7 +54,7 @@ const samples = {
   sheet: {
     name: 'Fees-Schedule.xlsx', type: 'XLS', icon: 'sheet', meta: '2 sheets · 9 rows · 19 KB', unit: 'row',
     answer: 'The listed late payment fee is $50.00, due after five days.',
-    queries: { hybrid: 'late payment fee', semantic: 'What will I owe if I pay rent late?', lexical: 'Late payment fee' },
+    queries: { hybrid: 'late payment fee', semantic: 'What will I owe if I pay rent late?', lexical: 'fee' },
     view: { kind: 'sheet', sheets: [
       { name: 'Fees', columns: ['Item', 'Amount', 'When due', 'Notes'], rows: [
         ['Monthly rent', '$1,850.00', 'First of each month', 'Includes one assigned parking space'],
@@ -79,7 +79,7 @@ const samples = {
   text: {
     name: 'Operations-Notes.txt', type: 'TXT', icon: 'text', meta: '3 KB', unit: 'passage',
     answer: 'Restore the last healthy version, confirm traffic is flowing, and then investigate the failed release.',
-    queries: { hybrid: 'failed deployment recovery', semantic: 'How do we get back online after a bad release?', lexical: 'last healthy version' },
+    queries: { hybrid: 'failed deployment recovery', semantic: 'How do we get back online after a bad release?', lexical: 'health' },
     view: { kind: 'text', blocks: [
       { k: 'p', t: 'SERVICE HEALTH' },
       { k: 'p', t: 'Check service health immediately after every deployment.' },
@@ -144,6 +144,42 @@ let marked = null;     // what to un-highlight next
 const sample = () => samples[documentSelect.value];
 const scoreOf = r => r.scores[modeSelect.value];
 const relevanceOf = score => score >= 0.55 ? 'high' : score >= 0.4 ? 'medium' : 'low';
+
+// ---------- Lexical (Ctrl+F) ----------
+
+/**
+ * Every occurrence of `query` in the document, in document order — what the app's Lexical search does: plain text match (so part of a
+ * word counts), case-insensitive unless Match case is on, spaces and line breaks treated loosely. No ranking, no scores. In a
+ * spreadsheet only cell text counts.
+ */
+function lexicalOccurrences(item, query, exact) {
+  const words = query.trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return [];
+  const re = new RegExp(words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('\\s+'), exact ? 'g' : 'gi');
+  const v = item.view; const out = [];
+  if (v.kind === 'sheet') {
+    v.sheets.forEach(sheet => sheet.rows.forEach((row, rowIdx) => row.forEach((cell, cellIdx) => {
+      for (const m of String(cell).matchAll(re)) out.push({ hit: m[0], text: rowText(sheet, row), cell: true, sheetRef: sheet, rowIdx, cellIdx, location: sheet.name + ' · Row ' + (rowIdx + 2) });
+    })));
+    return out;
+  }
+  const blocks = v.kind === 'pages' ? v.pages.flatMap(p => p.blocks.map(b => ({ b, page: p.n }))) : v.blocks.map(b => ({ b, page: 0 }));
+  blocks.forEach(({ b, page }) => {
+    const location = v.kind === 'pages' ? 'Page ' + page : 'Source passage';
+    if (b.cells) b.cells.forEach((c, cellIdx) => { for (const m of c.matchAll(re)) out.push({ hit: m[0], text: blockText(b), cell: true, block: b, cellIdx, location }); });
+    else for (const m of b.t.matchAll(re)) out.push({ hit: m[0], text: b.t, start: m.index, block: b, location });
+  });
+  return out;
+}
+
+/** A short run of text around an occurrence, with the occurrence itself marked. */
+function snippetFor(r) {
+  const at = r.start !== undefined ? r.start : Math.max(0, r.text.indexOf(r.hit));
+  const from = Math.max(0, at - 70); const to = Math.min(r.text.length, at + r.hit.length + 70);
+  const wrap = el('blockquote');
+  wrap.append(document.createTextNode('“' + (from > 0 ? '… ' : '') + r.text.slice(from, at)), el('mark', '', r.hit), document.createTextNode(r.text.slice(at + r.hit.length, to) + (to < r.text.length ? ' …' : '') + '”'));
+  return wrap;
+}
 
 // ---------- Viewer ----------
 
@@ -226,7 +262,18 @@ function clearHighlight() {
 function highlight(r) {
   clearHighlight();
   let target;
-  if (r.sheetRef) {
+  if (r.hit !== undefined) {
+    // A Lexical occurrence: just the matched text, or the one cell that holds it.
+    if (r.cell) {
+      let td;
+      if (r.sheetRef) { showSheet(r.sheetRef.name); td = r.sheetRef.rows[r.rowIdx].el.querySelectorAll('td')[r.cellIdx]; } else td = r.block.el.querySelectorAll('td')[r.cellIdx];
+      td.classList.add('ad-hit'); marked = { cells: [td] }; target = td;
+    } else {
+      const mark = el('mark', 'ad-mark', r.hit);
+      r.block.el.replaceChildren(document.createTextNode(r.block.t.slice(0, r.start)), mark, document.createTextNode(r.block.t.slice(r.start + r.hit.length)));
+      marked = { mark: true, block: r.block }; target = mark;
+    }
+  } else if (r.sheetRef) {
     showSheet(r.sheetRef.name);
     const cells = Array.from(r.sheetRef.rows[r.rowIdx].el.querySelectorAll('td'));
     cells.forEach(td => td.classList.add('ad-hit'));
@@ -304,12 +351,27 @@ function placeholder(icon, message) {
 }
 
 function scoreChip(score) {
-  const chip = el('span', 'score', 'Score ' + score.toFixed(2) + ' · AI rerank');
-  chip.title = 'Relevance (0–1) as judged by the AI reranker for this query.';
+  const chip = el('span', 'score', 'Score ' + score.toFixed(2) + ' · hybrid retrieval');
+  chip.title = 'Hybrid retrieval score (0–1): semantic + keyword match, normalized within this query’s candidates — not comparable across searches.';
   return chip;
 }
 
+function occurrenceCard(r, i) {
+  const item = sample();
+  const card = el('article', 'ad-card'); card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-pressed', 'false');
+  card.setAttribute('aria-label', 'Show ' + item.name + ', ' + r.location + ', in the viewer');
+  const top = el('div', 'ad-card-top'); const detail = el('div');
+  detail.append(el('h3', '', item.name), el('p', '', r.location));
+  top.append(el('span', 'file-icon ' + item.icon, item.type), detail);
+  const bottom = el('div', 'ad-card-bottom'); bottom.append(el('span', '', 'Click to view in document'));
+  card.append(top, snippetFor(r), bottom);
+  card.addEventListener('click', () => toggleResult(i));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleResult(i); } });
+  return card;
+}
+
 function cardFor(r, i) {
+  if (r.hit !== undefined) return occurrenceCard(r, i);
   const item = sample(); const score = scoreOf(r); const rel = relevanceOf(score);
   const card = el('article', 'ad-card'); card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-pressed', 'false');
   card.setAttribute('aria-label', 'Show ' + item.name + ', ' + r.location + ', in the viewer');
@@ -334,29 +396,28 @@ function render() {
   $('demo-case-label').classList.toggle('disabled', !lexical);
   if (!lexical) $('demo-case').checked = false;
 
-  // Rank by this mode's score; Lexical only keeps passages that literally contain the query (exact case when Match case is on).
-  results = item.results.slice().sort((a, b) => b.scores[mode] - a.scores[mode]);
+  // Hybrid and Semantic rank passages by this mode's score. Lexical is Ctrl+F: every occurrence of the text, in document order
+  // (exact case when Match case is on), with no ranking or scores.
   if (lexical) {
-    const q = item.queries.lexical;
-    const exact = $('demo-case').checked;
-    results = results.filter(r => exact ? r.text.includes(q) : r.text.toLowerCase().includes(q.toLowerCase()));
+    results = lexicalOccurrences(item, item.queries.lexical, $('demo-case').checked);
   } else {
-    results = results.filter(r => r.scores[mode] >= 0.5);
+    results = item.results.slice().sort((a, b) => b.scores[mode] - a.scores[mode]).filter(r => r.scores[mode] >= 0.5);
   }
 
   buildViewer();
   current = -1; visible = false;
 
   const list = $('results'); list.replaceChildren();
-  if (!results.length) list.append(placeholder('∅', 'No strong semantic matches found. Try rephrasing your search.'));
+  if (!results.length) list.append(placeholder('∅', lexical ? 'No matches for “' + item.queries.lexical + '”' + ($('demo-case').checked ? ' with Match case on.' : '.') : 'No strong semantic matches found. Try rephrasing your search.'));
   else results.forEach((r, i) => list.append(cardFor(r, i)));
-  $('results-status').textContent = results.length ? results.length + ' relevant ' + item.unit + (results.length === 1 ? '' : 's') : '';
+  $('results-status').textContent = results.length ? (lexical ? results.length + ' match' + (results.length === 1 ? '' : 'es') : results.length + ' relevant ' + item.unit + (results.length === 1 ? '' : 's')) : (lexical ? '0 matches' : '');
+  $('results-sort').textContent = lexical ? 'In document order' : 'Sorted by relevance ↓';
   $('results-sort').hidden = !results.length;
 
   const box = $('demo-answer-box');
   box.replaceChildren();
-  if (results.length) {
-    box.append(el('p', 'ad-answer-label', 'ANSWER'), el('p', 'ad-answer-text', item.answer), el('p', 'ad-answer-hint', 'Illustrative AI-generated answer from the top passage below — click to view it in the document'));
+  if (results.length && !lexical) { // (Lexical never has an answer, as in the app)
+    box.append(el('p', 'ad-answer-label', 'ANSWER'), el('p', 'ad-answer-text', item.answer), el('p', 'ad-answer-hint', 'Illustrative answer, extracted from the document (no AI) — click to view it in the document'));
     box.hidden = false;
   } else box.hidden = true;
 
