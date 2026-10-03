@@ -14,7 +14,7 @@
    Mirrors the application's own window — header, search bar, viewer, result cards — so the demo looks like
    the product. Values are taken from the app's stylesheet (src/api/routes/ui.route.ts in the app repo); every
    class is namespaced "ad-" so nothing else on the page is affected. */
-.app-demo{--amber-bg:#fdf3e2;--amber-fg:#8a6a1f;max-width:930px;margin:auto;border:1px solid #d7dfea;border-radius:12px;overflow:hidden;box-shadow:0 20px 55px #243f6810,0 3px 10px #243f6805;background:#fff;font-size:13px;line-height:1.5;color:var(--ink)}
+.app-demo{--amber-bg:#fdf3e2;--amber-fg:#8a6a1f;max-width:1100px;margin:auto;border:1px solid #d7dfea;border-radius:12px;overflow:hidden;box-shadow:0 20px 55px #243f6810,0 3px 10px #243f6805;background:#fff;font-size:13px;line-height:1.5;color:var(--ink)}
 .app-demo [hidden]{display:none!important}
 .app-demo button,.app-demo select,.app-demo input{font:inherit}
 
