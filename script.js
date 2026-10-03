@@ -24,7 +24,6 @@ const samples = {
       { find: '12.1 Either party', scores: { hybrid: 0.57, semantic: 0.62, lexical: 0.4 } },
       { find: '11.2 Charges not paid', scores: { hybrid: 0.51, semantic: 0.48, lexical: 0.3 } },
     ],
-    dialog: { location: 'Page 37 of 48', before: 'The parties may end this agreement in accordance with the conditions below.', after: 'The obligations set out in this section are subject to the exceptions in Section 13.', passage: 'In the event Customer elects to discontinue Services prior to expiration of the Initial Term, Customer shall pay an amount equal to the remaining monthly charges.' },
   },
   docx: {
     name: 'Purchase-Policy.docx', type: 'DOC', icon: 'word', meta: '34 KB', unit: 'passage',
@@ -51,7 +50,6 @@ const samples = {
       { find: 'Department manager | $2,500', scores: { hybrid: 0.61, semantic: 0.66, lexical: 0.35 } },
       { find: 'In an emergency', scores: { hybrid: 0.52, semantic: 0.5, lexical: 0.3 } },
     ],
-    dialog: null,
   },
   sheet: {
     name: 'Fees-Schedule.xlsx', type: 'XLS', icon: 'sheet', meta: '2 sheets · 9 rows · 19 KB', unit: 'row',
@@ -77,7 +75,6 @@ const samples = {
       { find: 'Returned payment fee', sheet: 'Fees', scores: { hybrid: 0.66, semantic: 0.7, lexical: 0.38 } },
       { find: 'Security deposit', sheet: 'Fees', scores: { hybrid: 0.52, semantic: 0.5, lexical: 0.3 } },
     ],
-    dialog: null,
   },
   text: {
     name: 'Operations-Notes.txt', type: 'TXT', icon: 'text', meta: '3 KB', unit: 'passage',
@@ -97,7 +94,6 @@ const samples = {
       { find: 'Announce every rollback', scores: { hybrid: 0.63, semantic: 0.64, lexical: 0.3 } },
       { find: 'Check service health', scores: { hybrid: 0.51, semantic: 0.5, lexical: 0.3 } },
     ],
-    dialog: null,
   },
 };
 
