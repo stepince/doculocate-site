@@ -180,6 +180,61 @@ export const pages = [
       ['What if I only know the exact code or ID?', 'Use Lexical search, which focuses on keyword matches, and turn on Match case if capitalization matters.']
     ],
     related: ['ctrl-f-alternative', 'search-pdf']
+  }  ,
+  {
+    slug: 'faq',
+    nav: 'FAQ',
+    header: false,
+    faqHeading: null,
+    title: 'DocuLocate FAQ — Semantic Search, Formats, Privacy | DocuLocate',
+    description: 'Answers about semantic document search, supported file formats, PDF search, search types, recent files, and what to do when there is no good match.',
+    eyebrow: 'FAQ',
+    h1: 'Questions, answered',
+    lead: 'Quick answers about how DocuLocate searches a document, what it supports, and what to expect from the results.',
+    sections: [],
+    faq: [
+      [
+            "What is semantic document search?",
+            "Semantic document search finds passages based on their meaning. Describe what you want to find, and DocuLocate looks for related information inside the document you upload."
+      ],
+      [
+            "How is DocuLocate different from Ctrl+F?",
+            "Ctrl+F searches for exact text. DocuLocate can find a passage that expresses the same idea using different words. A search for “cancel early” might locate wording about “discontinuing services prior to expiration.”"
+      ],
+      [
+            "Does my search need to use the same words as the document?",
+            "No. Use natural language to describe the information you need. Specific questions and clear concepts can help you find more relevant passages."
+      ],
+      [
+            "What document formats are supported?",
+            "The app’s file picker accepts PDF, Word (.docx), plain text (.txt), Excel (.xlsx and .xls), and CSV. Search one file at a time; a workbook can contain multiple sheets."
+      ],
+      [
+            "Does DocuLocate generate answers or find source text?",
+            "Source passages are the core results. With an AI provider configured, DocuLocate can also show a short generated answer linked to the top supporting passage. You can inspect that passage in the document viewer. Without a provider key, search still works."
+      ],
+      [
+            "Can I search PDFs?",
+            "Yes. Search a PDF with extractable text, then select a result to jump to and highlight its location in the built-in page viewer. Image-only scans need OCR first; DocuLocate does not perform OCR."
+      ],
+      [
+            "Is DocuLocate a “chat with PDF” tool?",
+            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. An optional generated answer can help summarize a match, but there is no general-purpose chat conversation."
+      ],
+      [
+            "What do Hybrid, Semantic, and Lexical mean?",
+            "Hybrid, the default, combines meaning and keyword matches. Semantic focuses on meaning. Lexical focuses on words, with an optional Match case control."
+      ],
+      [
+            "Are recent documents saved?",
+            "The active document is held in server memory. Separately, browser history lists up to five recent uploads and attempts to cache file contents for files up to 3 MiB, subject to browser storage limits. Larger files may be listed but require uploading again. Reset does not clear this history; use Clear history."
+      ],
+      [
+            "What if there is no good match?",
+            "The app can report that no strong match was found and show lower-confidence matches separately. Try rephrasing the query or changing search mode, then review the source yourself."
+      ]
+],
+    related: ['semantic-document-search', 'ctrl-f-alternative', 'search-pdf', 'search-excel-csv']
   }
 ];
 
