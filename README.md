@@ -11,7 +11,7 @@ npm run build                   # deployable files in dist/
 SERVE_DIST=1 PORT=3001 npm start # preview production output
 ```
 
-Deploy `dist/` to a static host that serves directory index pages and uses `404.html` for missing routes. Existing CNAME, robots.txt, sitemap, favicon assets, canonical URLs, and social metadata are retained. No analytics or third-party scripts are used.
+Deploy `dist/` to a static host that serves directory index pages and uses `404.html` for missing routes. Existing CNAME, robots.txt, sitemap, favicon assets, canonical URLs, and social metadata are retained. No analytics or third-party scripts are used. `app-ping.js` sends a no-cors request to the app's `/v1/health` on load and every 60 seconds while the tab is visible, so the app is awake when a visitor clicks "Try DocuLocate" (the URL comes from the page's own `data-app-link`, so build overrides and the dev rewrite apply).
 
 ## SEO guide pages
 
@@ -19,13 +19,13 @@ Guide pages are defined in `pages.mjs` (title, description, sections, FAQ, relat
 
 ## Application CTA
 
-Production “Try DocuLocate” links point to **https://doculocate.com/** as specified by the owner. The source dev server rewrites those three links to **http://localhost:4100/** for the running local app; `SERVE_DIST=1` leaves the built links unchanged. If this marketing page is also served at that exact URL, the CTA returns to the homepage. A separate app address can be configured at build time:
+Production “Try DocuLocate” links point to **https://app.doculocate.com/** as specified by the owner. The source dev server rewrites those links (on every page) to **http://localhost:4100/** for the running local app; `SERVE_DIST=1` leaves the built links unchanged. A separate app address can be configured at build time:
 
 ```sh
 DOCULOCATE_APP_URL=https://your-confirmed-app-host.example npm run build
 ```
 
-The build replaces all three app links in its output. Secondary links open the on-page workflow or interactive example.
+The build replaces all app links in its output. Secondary links open the on-page workflow or interactive example.
 
 ## Content
 

@@ -43,6 +43,7 @@ function render(page) {
 <meta name="twitter:description" content="${esc(page.description)}">
 <meta name="twitter:image" content="${siteUrl}/assets/social.png">
 <link rel="stylesheet" href="/styles.css">
+<script src="/app-ping.js" defer></script>
 <script type="application/ld+json">${json(ld)}</script>
 </head>
 <body>
@@ -50,7 +51,7 @@ function render(page) {
 <header class="header wrap">
 <a class="brand" href="/" aria-label="DocuLocate home"><img src="/assets/icon.svg" width="32" height="32" alt="">Docu<span>Locate</span></a>
 <nav aria-label="Main navigation"><a href="/">Product</a>${nav}</nav>
-<a class="button small" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a>
+<a class="button small" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a>
 </header>
 <main id="main">
 <article class="wrap seo-page">
@@ -58,12 +59,12 @@ function render(page) {
 <p class="eyebrow">${esc(page.eyebrow)}</p>
 <h1>${page.h1}</h1>
 <p class="seo-lead">${page.lead}</p>
-<div class="hero-actions"><a class="button" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a><a class="secondary" href="/#demo">See the interactive example <span aria-hidden="true">↓</span></a></div>
+<div class="hero-actions"><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a><a class="secondary" href="/#demo">See the interactive example <span aria-hidden="true">↓</span></a></div>
 ${page.sections.map((s) => `<section><h2>${esc(s.h2)}</h2>\n${s.html}</section>`).join('\n')}
 <section class="faq">${page.faqHeading === null ? '' : '<h2>Questions, answered</h2>'}<div class="faq-list">${page.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(strip(a))}</p></details>`).join('')}</div></section>
 <section class="seo-related"><h2>Keep reading</h2><ul>${related.map((r) => `<li><a href="/${r.slug}/">${esc(r.h1)}</a></li>`).join('')}<li><a href="/">How DocuLocate works</a></li></ul></section>
 </article>
-<section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
+<section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
 </main>
 <footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
 </body>
