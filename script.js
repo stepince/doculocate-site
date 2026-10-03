@@ -394,7 +394,6 @@ $('demo-prev').addEventListener('click', () => goTo(current < 0 ? results.length
 $('demo-next').addEventListener('click', () => goTo(current + 1));
 $('demo-answer-box').addEventListener('click', () => toggleResult(0));
 $('demo-answer-box').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleResult(0); } });
-$('liability-example').addEventListener('click', () => { documentSelect.value = 'pdf'; modeSelect.value = 'semantic'; render(); });
 
 // Drag handle under the viewer (same behavior as the app's).
 (function () {
@@ -408,22 +407,5 @@ $('liability-example').addEventListener('click', () => { documentSelect.value = 
     handle.addEventListener('pointermove', move); handle.addEventListener('pointerup', up); handle.addEventListener('pointercancel', up);
   });
 })();
-
-// ---------- Source dialog for the "grounded in your document" example ----------
-
-const dialog = $('source-dialog');
-$('evidence-source').addEventListener('click', () => {
-  const item = samples.pdf;
-  $('source-title').textContent = item.name;
-  $('source-location').textContent = item.dialog.location;
-  $('source-context-before').textContent = item.dialog.before;
-  $('source-passage').textContent = item.dialog.passage;
-  $('source-context-after').textContent = item.dialog.after;
-  dialog.showModal();
-});
-document.querySelector('.close-dialog').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', event => {
-  if (event.target === dialog) { const b = dialog.getBoundingClientRect(); if (event.clientX < b.left || event.clientX > b.right || event.clientY < b.top || event.clientY > b.bottom) dialog.close(); }
-});
 
 render();
