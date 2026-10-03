@@ -5,7 +5,6 @@ const samples = {
   pdf: {
     name: 'Master-Service-Agreement.pdf', type: 'PDF', icon: '', meta: '48 pages · 612 KB', unit: 'passage',
     queries: { hybrid: 'early termination charges', semantic: 'What happens if I end the agreement early?', lexical: 'remaining monthly charges' },
-    answer: 'Ending the services before the initial term expires requires payment of the remaining monthly charges, subject to the agreement’s exceptions.',
     view: { kind: 'pages', pages: [
       { n: 36, blocks: [
         { k: 'h', t: '11. Payment terms' },
@@ -28,7 +27,6 @@ const samples = {
   docx: {
     name: 'Purchase-Policy.docx', type: 'DOC', icon: 'word', meta: '34 KB', unit: 'passage',
     queries: { hybrid: 'purchase approval threshold', semantic: 'When do I need permission before buying something?', lexical: 'written authorization' },
-    answer: 'Purchases above $2,500 need written authorization from the department manager before the order is placed.',
     view: { kind: 'doc', blocks: [
       { k: 'h1', t: 'Purchasing policy' },
       { k: 'h2', t: '1. Purpose' },
@@ -54,7 +52,6 @@ const samples = {
   sheet: {
     name: 'Fees-Schedule.xlsx', type: 'XLS', icon: 'sheet', meta: '2 sheets · 9 rows · 19 KB', unit: 'row',
     queries: { hybrid: 'late payment fee', semantic: 'What will I owe if I pay rent late?', lexical: 'Late payment fee' },
-    answer: 'The listed late payment fee is $50.00, due after five days.',
     view: { kind: 'sheet', sheets: [
       { name: 'Fees', columns: ['Item', 'Amount', 'When due', 'Notes'], rows: [
         ['Monthly rent', '$1,850.00', 'First of each month', 'Includes one assigned parking space'],
@@ -79,7 +76,6 @@ const samples = {
   text: {
     name: 'Operations-Notes.txt', type: 'TXT', icon: 'text', meta: '3 KB', unit: 'passage',
     queries: { hybrid: 'failed deployment recovery', semantic: 'How do we get back online after a bad release?', lexical: 'last healthy version' },
-    answer: 'Restore the last healthy version, confirm traffic is flowing, and then investigate the failed release.',
     view: { kind: 'text', blocks: [
       { k: 'p', t: 'SERVICE HEALTH' },
       { k: 'p', t: 'Check service health immediately after every deployment.' },
@@ -95,12 +91,6 @@ const samples = {
       { find: 'Check service health', scores: { hybrid: 0.51, semantic: 0.5, lexical: 0.3 } },
     ],
   },
-};
-
-const MODE_NOTES = {
-  hybrid: 'Hybrid combines meaning and keyword matches. It is the app’s default search mode.',
-  semantic: 'Semantic searches by meaning, so the query can use different wording from the source.',
-  lexical: 'Lexical focuses on keyword matches. Match case restricts results to the exact capitalization of the query.',
 };
 
 const $ = id => document.getElementById(id);
@@ -150,7 +140,6 @@ let marked = null;     // what to un-highlight next
 const sample = () => samples[documentSelect.value];
 const scoreOf = r => r.scores[modeSelect.value];
 const relevanceOf = score => score >= 0.55 ? 'high' : score >= 0.4 ? 'medium' : 'low';
-const answerOn = () => $('demo-answer').checked;
 
 // ---------- Viewer ----------
 
@@ -262,7 +251,6 @@ function syncActive() {
     card.classList.toggle('active', on);
     card.setAttribute('aria-pressed', String(on));
   });
-  $('demo-answer-box').classList.toggle('active', visible && current === 0 && !$('demo-answer-box').hidden);
 }
 
 function updateCount() {
@@ -283,7 +271,7 @@ function hideHighlight() {
   syncActive(); updateCount();
 }
 
-/** A card or the answer: jump and highlight, or — if that result's highlight is already showing — turn it off. */
+/** A card: jump and highlight, or — if that result's highlight is already showing — turn it off. */
 function toggleResult(index) {
   if (visible && current === index) hideHighlight(); else goTo(index);
 }
@@ -295,11 +283,8 @@ function placeholder(icon, message) {
 }
 
 function scoreChip(score) {
-  const reranked = answerOn();
-  const chip = el('span', 'score', 'Score ' + score.toFixed(2) + ' · ' + (reranked ? 'AI rerank' : 'hybrid retrieval'));
-  chip.title = reranked
-    ? 'Relevance (0–1) as judged by the AI reranker for this query.'
-    : 'Hybrid retrieval score (0–1): semantic + keyword match, normalized within this query’s candidates — not comparable across searches.';
+  const chip = el('span', 'score', 'Score ' + score.toFixed(2) + ' · hybrid retrieval');
+  chip.title = 'Hybrid retrieval score (0–1): semantic + keyword match, normalized within this query’s candidates — not comparable across searches.';
   return chip;
 }
 
@@ -326,7 +311,6 @@ function render() {
   $('demo-case').disabled = !lexical;
   $('demo-case-label').classList.toggle('disabled', !lexical);
   if (!lexical) $('demo-case').checked = false;
-  $('mode-note').textContent = MODE_NOTES[mode];
 
   // Rank by this mode's score; Lexical only keeps passages that literally contain the query (exact case when Match case is on).
   results = item.results.slice().sort((a, b) => b.scores[mode] - a.scores[mode]);
@@ -347,28 +331,18 @@ function render() {
   $('results-status').textContent = results.length ? results.length + ' relevant ' + item.unit + (results.length === 1 ? '' : 's') : '';
   $('results-sort').hidden = !results.length;
 
-  const box = $('demo-answer-box');
-  box.replaceChildren();
-  if (answerOn() && results.length) {
-    box.append(el('p', 'ad-answer-label', 'ANSWER'), el('p', 'ad-answer-text', item.answer), el('p', 'ad-answer-hint', 'Illustrative AI-generated answer from the top passage below — click to view it in the document'));
-    box.hidden = false;
-  } else box.hidden = true;
-  $('demo-footer-note').textContent = answerOn() ? 'Reranked by AI · illustrative example' : 'Fictional files · no uploads or live AI calls';
-
   const hasResults = results.length > 0;
   $('demo-prev').disabled = !hasResults; $('demo-next').disabled = !hasResults;
   updateCount(); syncActive();
   if (lexical && hasResults) goTo(0); // like the app: Lexical jumps straight to the first occurrence
 }
 
-/** Clear: removes the highlight, results and Answer but keeps the query, search type and document. */
+/** Clear: removes the highlight and results but keeps the query, search type and document. */
 function clearResults() {
   results = []; current = -1; visible = false;
   clearHighlight();
   $('results').replaceChildren(placeholder('⌕', 'Search by meaning — try words that don’t appear in the document.'));
   $('results-status').textContent = ''; $('results-sort').hidden = true;
-  $('demo-answer-box').hidden = true; $('demo-answer-box').replaceChildren();
-  $('demo-footer-note').textContent = 'Fictional files · no uploads or live AI calls';
   $('demo-prev').disabled = true; $('demo-next').disabled = true;
   updateCount(); syncActive();
 }
@@ -379,17 +353,14 @@ documentSelect.addEventListener('change', render);
 modeSelect.addEventListener('change', render);
 $('demo-search').addEventListener('click', render);
 $('demo-case').addEventListener('change', render);
-$('demo-answer').addEventListener('change', render);
 $('demo-clear').addEventListener('click', clearResults);
 $('demo-reset').addEventListener('click', () => {
-  documentSelect.value = 'pdf'; modeSelect.value = 'hybrid'; $('demo-case').checked = false; $('demo-answer').checked = false;
+  documentSelect.value = 'pdf'; modeSelect.value = 'hybrid'; $('demo-case').checked = false;
   render();
 });
 $('demo-clear-query').addEventListener('click', () => { queryInput.value = ''; $('demo-clear-query').hidden = true; });
 $('demo-prev').addEventListener('click', () => goTo(current < 0 ? results.length - 1 : current - 1));
 $('demo-next').addEventListener('click', () => goTo(current + 1));
-$('demo-answer-box').addEventListener('click', () => toggleResult(0));
-$('demo-answer-box').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleResult(0); } });
 
 // Drag handle under the viewer (same behavior as the app's).
 (function () {

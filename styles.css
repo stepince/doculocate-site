@@ -57,11 +57,11 @@
 .ad-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
 .ad-btn.primary:hover{background:#2349bb;border-color:#2349bb;color:#fff}
 .ad-btn.danger:hover{border-color:#c94b3f;color:#c94b3f}
-.app-demo button:focus-visible,.app-demo input:focus-visible,.ad-card:focus-visible,.ad-answer:focus-visible,.ad-viewer:focus-visible{outline:2px solid #7e9ce9;outline-offset:2px}
-.ad-help{font-size:11px;color:var(--muted);margin:12px 0 0}
-.ad-answer-toggle{display:inline-flex;align-items:center;gap:6px;margin-left:10px;white-space:nowrap;cursor:pointer}
-.ad-answer-toggle input{margin:0;accent-color:var(--blue)}
-.ad-mode-note{font-size:11px;color:var(--muted);margin:6px 0 0}
+.app-demo button:focus-visible,.app-demo input:focus-visible,.ad-card:focus-visible,.ad-viewer:focus-visible{outline:2px solid #7e9ce9;outline-offset:2px}
+
+
+
+
 
 /* Viewer: header, scrollable body, drag handle. */
 .ad-viewer{border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
@@ -107,13 +107,13 @@
 
 /* Results: Answer callout, heading, cards. */
 .ad-results{padding:22px 24px}
-.ad-answer{border:1px solid #d4dff9;background:#f7f9ff;border-radius:7px;padding:12px 16px;margin-bottom:12px;cursor:pointer;transition:border-color .15s}
-.ad-answer:hover{border-color:#b6c7f1}
-.ad-answer.active{border-color:var(--blue);box-shadow:inset 3px 0 0 var(--blue)}
-.ad-answer p{margin:0}
-.ad-answer-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--blue);margin-bottom:6px!important}
-.ad-answer-text{font-size:14px;line-height:1.6;color:var(--ink)}
-.ad-answer-hint{font-size:10px;color:#8791a1;margin-top:8px!important}
+
+
+
+
+
+
+
 .ad-results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:10px;color:#8390a0;margin:0 0 10px;min-height:14px}
 .ad-results-heading>span:first-child{font-weight:600;color:#5c687c}
 .ad-card{padding:16px 17px 12px;border:1px solid var(--line);border-radius:7px;margin-bottom:10px;cursor:pointer;transition:border-color .15s,background .15s}
@@ -145,7 +145,7 @@
 .ad-viewer-body{padding:12px;height:260px}
 .ad-docx{padding:20px}
 .ad-page{padding:20px 20px 12px}
-.ad-answer-toggle{display:flex;margin:8px 0 0}
+
 .ad-bottom{padding:10px 16px}
 }
 @media(prefers-reduced-motion:reduce){.ad-mark,.ad-grid td.ad-hit{animation:none}}
