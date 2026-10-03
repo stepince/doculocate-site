@@ -48,7 +48,7 @@ export const pages = [
       ['Do I need to use the same words as the document?', 'No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages.'],
       ['Does semantic search replace keyword search?', 'Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only.']
     ],
-    related: ['ctrl-f-alternative']
+    related: ['ctrl-f-alternative', 'search-pdf']
   },
   {
     slug: 'ctrl-f-alternative',
@@ -95,7 +95,91 @@ export const pages = [
       ['Can it search PDFs and spreadsheets?', 'Yes. The app accepts PDF, Word (.docx), plain text, Excel (.xlsx and .xls), and CSV files. PDFs need extractable text, because image-only scans need OCR first and DocuLocate does not perform OCR.'],
       ['What if the answer isn’t in the document?', 'The app can report that no strong match was found and show lower-confidence matches separately. Try rephrasing the query or changing the search type, then review the source yourself.']
     ],
-    related: ['semantic-document-search']
+    related: ['semantic-document-search', 'search-pdf']
+  },
+  {
+    slug: 'search-pdf',
+    nav: 'Search PDFs',
+    title: 'Search a PDF by Meaning — Find the Right Page | DocuLocate',
+    description: 'Search a PDF in your own words and jump to the matching passage in a page viewer, even when the wording differs. Works with PDFs that have extractable text.',
+    eyebrow: 'GUIDE',
+    h1: 'Search a PDF by meaning',
+    lead: 'Long PDFs, such as contracts, policies, manuals, and reports, are hard to search when you don’t know the exact wording. Upload one, describe what you need, and DocuLocate highlights the matching passage on its page.',
+    sections: [
+      {
+        h2: 'Why searching a PDF is harder than it should be',
+        html: `<p>A PDF reader’s find box looks for exact text. If you search for “refund” and the document says “reimbursement,” or you search “deadline” and it says “must be completed within thirty days,” you get nothing, or hits that don’t matter.</p>
+<p>The longer the PDF, the more this costs you. You end up trying synonyms, scrolling, and skimming headings.</p>`
+      },
+      {
+        h2: 'How to search a PDF with DocuLocate',
+        html: `<ol><li><strong>Upload the PDF.</strong> The app prepares it for search before opening the viewer.</li><li><strong>Describe what you need,</strong> for example “who pays if the project is delayed?”</li><li><strong>Select a result.</strong> The built-in page viewer jumps to its location and highlights the passage.</li><li><strong>Read it in context.</strong> Step between matches, or open or download the original file.</li></ol>
+<p>Each result shows the page it came from, when the app can determine it, plus a relevance indication.</p>`
+      },
+      {
+        h2: 'Example: finding a termination clause',
+        html: `<div class="seo-example"><p class="mini-label">YOU SEARCH</p><p class="seo-query">What happens if I end the agreement early?</p><p class="mini-label">MASTER-SERVICE-AGREEMENT.PDF · PAGE 37 · ILLUSTRATIVE</p><blockquote>“12.2 In the event Customer elects to <mark>discontinue Services prior to expiration of the Initial Term</mark>, Customer shall pay an amount equal to the remaining monthly charges.”</blockquote><span class="source-line">Fictional example · review the full terms in context</span></div>
+<p>The query and the clause share almost no words, which is exactly the case where a find box fails.</p>`
+      },
+      {
+        h2: 'Choosing a search type for a PDF',
+        html: `<ul><li><strong>Hybrid</strong> is the default and works well for most questions.</li><li><strong>Semantic</strong> helps when you can describe an idea but not the wording.</li><li><strong>Lexical</strong> suits exact terms, such as a defined term, a name, or a section number. Turn on Match case when capitalization matters.</li></ul>`
+      },
+      {
+        h2: 'Limits to know about',
+        html: `<ul><li><strong>The PDF needs extractable text.</strong> Image-only scans need OCR first, and DocuLocate does not perform OCR. If you can select and copy text in your PDF reader, it will usually work.</li><li><strong>Relevance is a guide.</strong> Read the highlighted passage and its surroundings before relying on it, especially for legal or financial decisions.</li><li><strong>One document at a time.</strong> DocuLocate searches the active document, not a folder of PDFs.</li></ul>
+<p>Before you upload anything sensitive, read the <a href="/privacy/">privacy details</a>.</p>`
+      }
+    ],
+    faq: [
+      ['Can I search a scanned PDF?', 'Only if it contains extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.'],
+      ['Will it show me the page the result came from?', 'Yes. Selecting a result jumps to its location in the built-in page viewer and highlights the passage. Results show the PDF page when it is available.'],
+      ['Can I search several PDFs at once?', 'No. DocuLocate searches one active document at a time. Replace the document to search another file.'],
+      ['Is this a chat-with-PDF tool?', 'No. You search, review the matching passages, and inspect the source. When an AI provider is configured, the app can show a short generated answer linked to its supporting passage, but there is no general chat conversation.']
+    ],
+    related: ['semantic-document-search', 'search-excel-csv']
+  },
+  {
+    slug: 'search-excel-csv',
+    nav: 'Search spreadsheets',
+    title: 'Search Excel and CSV Files by Meaning | DocuLocate',
+    description: 'Search an Excel workbook or CSV file in plain language and jump to the matching row, with sheet tabs and highlighted rows in a grid viewer.',
+    eyebrow: 'GUIDE',
+    h1: 'Search an Excel or CSV file by meaning',
+    lead: 'Spreadsheets hide information in rows, columns, and sheet tabs. Describe what you need in plain language, and DocuLocate highlights the matching row in a grid viewer.',
+    sections: [
+      {
+        h2: 'Why spreadsheets are awkward to search',
+        html: `<p>Excel’s find works on exact cell text, one workbook at a time. In a workbook with several sheets and hundreds of rows, you still have to guess the label someone used: “late fee,” “penalty,” “overdue charge.”</p>
+<p>Row-level answers are what you usually want: the line that says what applies, to whom, and how much.</p>`
+      },
+      {
+        h2: 'What DocuLocate does with a spreadsheet',
+        html: `<ul><li>Accepts <strong>.xlsx, .xls, and .csv</strong> files.</li><li>Shows the file in a <strong>grid with sheet tabs</strong>.</li><li>Returns matching <strong>rows</strong> and highlights them in the grid.</li><li>Shows the <strong>sheet and row</strong> for each result, when available.</li></ul>
+<p>A workbook can contain multiple sheets. You still search one file at a time.</p>`
+      },
+      {
+        h2: 'Example: finding a fee',
+        html: `<div class="seo-example"><p class="mini-label">YOU SEARCH</p><p class="seo-query">What do I pay if I’m late with a payment?</p><p class="mini-label">FEES-SCHEDULE.XLSX · ILLUSTRATIVE ROW</p><blockquote><mark>Overdue balance · Monthly interest · 1.0%</mark></blockquote><span class="source-line">Fictional example · check the full sheet for conditions and exceptions</span></div>
+<p>The sheet says “overdue balance,” not “late.” A meaning-based search can still connect the two.</p>`
+      },
+      {
+        h2: 'Tips for better spreadsheet searches',
+        html: `<ul><li><strong>Describe the row you want,</strong> not a single column header.</li><li><strong>Use Lexical</strong> for exact codes, SKUs, IDs, or names, and turn on Match case if it matters.</li><li><strong>Check neighbouring rows and other sheets.</strong> A matching row can depend on a note or condition elsewhere in the workbook.</li></ul>`
+      },
+      {
+        h2: 'Limits to know about',
+        html: `<ul><li>DocuLocate finds and highlights rows. It does not edit the spreadsheet, and it is not a calculation or reporting tool.</li><li>Relevance is a guide. Read the highlighted row in context before relying on it.</li><li>One file at a time.</li></ul>
+<p>Before you upload anything sensitive, read the <a href="/privacy/">privacy details</a>.</p>`
+      }
+    ],
+    faq: [
+      ['Which spreadsheet formats work?', 'The app’s file picker accepts Excel (.xlsx and .xls) and CSV files.'],
+      ['Can it search across all the sheets in a workbook?', 'A workbook can contain multiple sheets, and the viewer shows them as tabs. Results show the sheet and row when available. You search one file at a time.'],
+      ['Can DocuLocate calculate totals or build reports?', 'No. It locates relevant rows and passages. It does not calculate, edit, or report on your data.'],
+      ['What if I only know the exact code or ID?', 'Use Lexical search, which focuses on keyword matches, and turn on Match case if capitalization matters.']
+    ],
+    related: ['ctrl-f-alternative', 'search-pdf']
   }
 ];
 
