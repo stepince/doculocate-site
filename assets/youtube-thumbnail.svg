@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs>
+<radialGradient id="g1" cx="85%" cy="20%" r="70%"><stop offset="0" stop-color="#3f6cf0"/><stop offset="1" stop-color="#182339"/></radialGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity=".45"/></filter>
+</defs>
+<rect width="1280" height="720" fill="url(#g1)"/>
+<g font-family="Arial,Helvetica,sans-serif" font-weight="bold">
+<rect x="60" y="56" width="52" height="52" rx="14" fill="#315bda"/>
+<path d="M74 68h16l8 8v22H74zM90 68v8h8" fill="none" stroke="#fff" stroke-width="3"/>
+<text x="126" y="96" font-size="38" fill="#fff">Docu<tspan fill="#9db6ff">Locate</tspan></text>
+<text x="60" y="290" font-size="150" letter-spacing="-5" fill="#9aa8c7">Ctrl+F</text>
+<path d="M50 245L440 245" stroke="#ff5a5f" stroke-width="16" stroke-linecap="round"/>
+<text x="60" y="440" font-size="120" letter-spacing="-4" fill="#fff">Search by</text>
+<rect x="46" y="470" width="610" height="150" rx="18" fill="#e4efc7"/>
+<text x="62" y="590" font-size="128" letter-spacing="-4" fill="#182339">MEANING</text>
+</g>
+<g filter="url(#sh)" font-family="Arial,Helvetica,sans-serif">
+<rect x="700" y="130" width="520" height="470" rx="26" fill="#fff"/>
+<rect x="730" y="162" width="460" height="78" rx="14" fill="#fff" stroke="#315bda" stroke-width="3"/>
+<circle cx="768" cy="200" r="13" fill="none" stroke="#315bda" stroke-width="4"/><path d="M778 210l12 12" stroke="#315bda" stroke-width="4" stroke-linecap="round"/>
+<text x="808" y="210" font-size="28" fill="#182339">what if I quit early?</text>
+<rect x="730" y="272" width="460" height="296" rx="14" fill="#f4f6fa"/>
+<rect x="752" y="296" width="62" height="30" rx="7" fill="#fff6f3" stroke="#eadbd9"/><text x="783" y="318" font-size="17" font-weight="bold" text-anchor="middle" fill="#b36758">PDF</text>
+<text x="830" y="318" font-size="20" fill="#657186">contract.pdf · p.14</text>
+<rect x="1000" y="296" width="168" height="30" rx="15" fill="#f0f7ed"/><text x="1084" y="318" font-size="16" font-weight="bold" text-anchor="middle" fill="#42765a">Best match</text>
+<text x="752" y="390" font-size="27" fill="#657186">…either party may leave</text>
+<rect x="746" y="412" width="428" height="46" rx="6" fill="#e4efc7"/>
+<text x="752" y="446" font-size="27" font-weight="bold" fill="#182339">after a 60-day notice period</text>
+<text x="752" y="498" font-size="27" fill="#657186">and pay an early exit fee.…</text>
+</g>
+</svg>
