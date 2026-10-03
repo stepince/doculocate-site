@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantic Document Search — Find Passages by Meaning | DocuLocate</title>
+<meta name="description" content="Semantic document search finds the passage you mean, even when it uses different words. See how it works and when keyword search is the better choice.">
+<meta name="theme-color" content="#f8f9fc">
+<link rel="canonical" href="https://doculocate.com/semantic-document-search/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="DocuLocate">
+<meta property="og:title" content="Semantic Document Search — Find Passages by Meaning | DocuLocate">
+<meta property="og:description" content="Semantic document search finds the passage you mean, even when it uses different words. See how it works and when keyword search is the better choice.">
+<meta property="og:url" content="https://doculocate.com/semantic-document-search/">
+<meta property="og:image" content="https://doculocate.com/assets/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Semantic Document Search — Find Passages by Meaning | DocuLocate">
+<meta name="twitter:description" content="Semantic document search finds the passage you mean, even when it uses different words. See how it works and when keyword search is the better choice.">
+<meta name="twitter:image" content="https://doculocate.com/assets/social.png">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebPage","name":"Semantic document search","description":"Semantic document search finds the passage you mean, even when it uses different words. See how it works and when keyword search is the better choice.","url":"https://doculocate.com/semantic-document-search/","isPartOf":{"@type":"WebSite","name":"DocuLocate","url":"https://doculocate.com/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DocuLocate","item":"https://doculocate.com/"},{"@type":"ListItem","position":2,"name":"Semantic search","item":"https://doculocate.com/semantic-document-search/"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is semantic document search?","acceptedAnswer":{"@type":"Answer","text":"Semantic document search finds passages based on their meaning rather than exact wording. You describe what you want to find, and the search looks for related information in the document."}},{"@type":"Question","name":"Is semantic search the same as AI chat?","acceptedAnswer":{"@type":"Answer","text":"No. Semantic search returns the passages in your document that best match your query, so you can read the source yourself. DocuLocate can optionally show a short generated answer when an AI provider is configured, but it is not a general-purpose chat tool."}},{"@type":"Question","name":"Do I need to use the same words as the document?","acceptedAnswer":{"@type":"Answer","text":"No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages."}},{"@type":"Question","name":"Does semantic search replace keyword search?","acceptedAnswer":{"@type":"Answer","text":"Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only."}}]}]</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="header wrap">
+<a class="brand" href="/" aria-label="DocuLocate home"><img src="/assets/icon.svg" width="32" height="32" alt="">Docu<span>Locate</span></a>
+<nav aria-label="Main navigation"><a href="/">Product</a><a href="/semantic-document-search/">Semantic search</a><a href="/ctrl-f-alternative/">Ctrl+F alternative</a></nav>
+<a class="button small" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a>
+</header>
+<main id="main">
+<article class="wrap seo-page">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">DocuLocate</a> <span aria-hidden="true">/</span> <span>Semantic search</span></nav>
+<p class="eyebrow">GUIDE</p>
+<h1>Semantic document search</h1>
+<p class="seo-lead">Semantic document search finds the passages that match what you <em>mean</em>, not only the words you typed. Describe what you are looking for, and get the relevant passage back, even if the author phrased it differently.</p>
+<div class="hero-actions"><a class="button" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a><a class="secondary" href="/#demo">See the interactive example <span aria-hidden="true">↓</span></a></div>
+<section><h2>How semantic search works</h2>
+<p>Keyword search asks, “Does this text contain these characters?” Semantic search asks, “Which passage is about the same thing as this question?”</p>
+<p>Semantic search systems typically split a document into passages and turn each one into a numerical representation of its meaning. Your query gets the same treatment. The passages whose meaning sits closest to the query are ranked first.</p>
+<p>That is why a question in everyday language can lead to formal, technical, or legal wording in the source.</p></section>
+<section><h2>An example</h2>
+<p>Suppose you search a service agreement for this:</p>
+<div class="seo-example"><p class="mini-label">YOU SEARCH</p><p class="seo-query">Can I cancel early?</p><p class="mini-label">POSSIBLE SOURCE PASSAGE</p><blockquote>“Customer may <mark>discontinue Services prior to expiration of the Initial Term</mark>…”</blockquote><span class="source-line">Illustrative clause · review the full terms in context</span></div>
+<p>The document never says “cancel” or “early.” An exact-match search for those words finds nothing. A semantic search connects “cancel early” with “discontinue … prior to expiration.”</p></section>
+<section><h2>When keyword search is still the better tool</h2>
+<p>Meaning-based search is not always the right choice. Use exact matching when you are looking for:</p>
+<ul><li>a name, ID, invoice number, or section number</li><li>a quoted phrase or a defined term</li><li>a specific capitalization or spelling</li></ul>
+<p>DocuLocate offers three search types so you can pick the right one for the question:</p>
+<ul><li><strong>Hybrid</strong> (the default) combines meaning and keyword matches.</li><li><strong>Semantic</strong> focuses on meaning.</li><li><strong>Lexical</strong> focuses on words, with an optional Match case control.</li></ul>
+<p>Switching modes does not change the active document.</p></section>
+<section><h2>Semantic search in DocuLocate</h2>
+<p>DocuLocate searches <strong>one document at a time</strong>. Upload a PDF, Word (.docx), text, Excel (.xlsx or .xls), or CSV file, then describe what you need.</p>
+<ul><li>Results show the matching passage or spreadsheet row, with a relevance indication.</li><li>Selecting a result highlights its location in the viewer, so you can read it in context.</li><li>Weaker results are shown separately as lower-confidence matches. If there is no strong match, the app says so.</li></ul>
+<p>Relevance is a guide, not a verdict. Always read the source passage before you rely on it.</p>
+<p>When an AI provider is configured, the app can also show a short generated answer linked to its supporting passage. This is optional, and search works without it. Read the <a href="/privacy/">privacy details</a> to see what is sent to a provider.</p></section>
+<section><h2>What to know before you start</h2>
+<ul><li><strong>Scanned PDFs:</strong> a PDF needs extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.</li><li><strong>Specific questions work best.</strong> “What happens if I end the agreement before the term is over?” usually beats a single word.</li><li><strong>If nothing looks right,</strong> rephrase the query or switch search type.</li></ul></section>
+<section class="faq"><h2>Questions, answered</h2><div class="faq-list"><details><summary>What is semantic document search?</summary><p>Semantic document search finds passages based on their meaning rather than exact wording. You describe what you want to find, and the search looks for related information in the document.</p></details><details><summary>Is semantic search the same as AI chat?</summary><p>No. Semantic search returns the passages in your document that best match your query, so you can read the source yourself. DocuLocate can optionally show a short generated answer when an AI provider is configured, but it is not a general-purpose chat tool.</p></details><details><summary>Do I need to use the same words as the document?</summary><p>No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages.</p></details><details><summary>Does semantic search replace keyword search?</summary><p>Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only.</p></details></div></section>
+<section class="seo-related"><h2>Keep reading</h2><ul><li><a href="/ctrl-f-alternative/">A better alternative to Ctrl+F for long documents</a></li><li><a href="/">How DocuLocate works</a></li></ul></section>
+</article>
+<section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p></div><nav aria-label="Footer"><a href="/">Product</a><a href="/semantic-document-search/">Semantic search</a><a href="/ctrl-f-alternative/">Ctrl+F alternative</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
+</body>
+</html>

@@ -13,6 +13,10 @@ SERVE_DIST=1 PORT=3001 npm start # preview production output
 
 Deploy `dist/` to a static host that serves directory index pages and uses `404.html` for missing routes. Existing CNAME, robots.txt, sitemap, favicon assets, canonical URLs, and social metadata are retained. No analytics or third-party scripts are used.
 
+## SEO guide pages
+
+Guide pages are defined in `pages.mjs` (title, description, sections, FAQ, related links) and rendered by `generate-pages.mjs` to `<slug>/index.html` with shared header, footer, canonical/social metadata, and JSON-LD. The generator also rewrites `sitemap.xml`. `npm run dev`, `npm start`, and `npm run build` run it automatically; run `npm run generate` on its own after editing `pages.mjs`. The build and dev server pick up new slugs from `pages.mjs`. Commit the generated files. Keep each page substantive and limited to verified product behavior.
+
 ## Application CTA
 
 Production “Try DocuLocate” links point to **https://doculocate.com/** as specified by the owner. The source dev server rewrites those three links to **http://localhost:4100/** for the running local app; `SERVE_DIST=1` leaves the built links unchanged. If this marketing page is also served at that exact URL, the CTA returns to the homepage. A separate app address can be configured at build time:

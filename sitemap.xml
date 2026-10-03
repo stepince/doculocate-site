@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://doculocate.com/</loc></url>
+  <url><loc>https://doculocate.com/semantic-document-search/</loc></url>
+  <url><loc>https://doculocate.com/ctrl-f-alternative/</loc></url>
   <url><loc>https://doculocate.com/privacy/</loc></url>
   <url><loc>https://doculocate.com/terms/</loc></url>
 </urlset>

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "node server.mjs", "start": "node server.mjs", "build": "node build.mjs", "check": "node --check script.js && node --check build.mjs && node --check server.mjs" },
+  "scripts": { "dev": "node generate-pages.mjs && node server.mjs", "start": "node generate-pages.mjs && node server.mjs", "generate": "node generate-pages.mjs", "build": "node build.mjs", "check": "node --check script.js && node --check build.mjs && node --check generate-pages.mjs && node --check pages.mjs && node --check server.mjs" },
   "engines": { "node": ">=18" }
 }
