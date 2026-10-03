@@ -190,3 +190,5 @@
 .ad-answer-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--blue);margin-bottom:6px!important}
 .ad-answer-text{font-size:14px;line-height:1.6;color:var(--ink)}
 .ad-answer-hint{font-size:10px;color:#8791a1;margin-top:8px!important}
+
+.header nav .video-link{display:inline-flex;align-items:center;gap:5px}
