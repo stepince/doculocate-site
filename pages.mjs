@@ -39,7 +39,8 @@ export const pages = [
       },
       {
         h2: 'What to know before you start',
-        html: `<ul><li><strong>Scanned PDFs:</strong> a PDF needs extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.</li><li><strong>Specific questions work best.</strong> “What happens if I end the agreement before the term is over?” usually beats a single word.</li><li><strong>If nothing looks right,</strong> rephrase the query or switch search type.</li></ul>`
+        html: `<ul><li><strong>Scanned PDFs:</strong> a PDF needs extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.</li><li><strong>Specific questions work best.</strong> “What happens if I end the agreement before the term is over?” usually beats a single word.</li><li><strong>If nothing looks right,</strong> rephrase the query or switch search type.</li></ul>
+<p>Semantic search finds information inside a single document. To see how two documents differ instead, <a href="https://difffind.com/">DiffFind compares documents by meaning as well as wording</a>.</p>`
       }
     ],
     faq: [
@@ -128,7 +129,8 @@ export const pages = [
       {
         h2: 'Limits to know about',
         html: `<ul><li><strong>The PDF needs extractable text.</strong> Image-only scans need OCR first, and DocuLocate does not perform OCR. If you can select and copy text in your PDF reader, it will usually work.</li><li><strong>Relevance is a guide.</strong> Read the highlighted passage and its surroundings before relying on it, especially for legal or financial decisions.</li><li><strong>One document at a time.</strong> DocuLocate searches the active document, not a folder of PDFs.</li></ul>
-<p>Before you upload anything sensitive, read the <a href="/privacy/">privacy details</a>.</p>`
+<p>Before you upload anything sensitive, read the <a href="/privacy/">privacy details</a>.</p>
+<p>Need to see what changed between two versions of a PDF? That is a comparison task, and <a href="https://difffind.com/">DiffFind</a> is built for it.</p>`
       }
     ],
     faq: [
@@ -213,7 +215,8 @@ export const pages = [
       {
         h2: 'What it is not',
         html: `<ul><li><strong>Not legal advice.</strong> DocuLocate finds passages. It does not interpret them or tell you what a contract means for you. For decisions that matter, have a qualified professional review it.</li><li><strong>Relevance is a guide.</strong> A highest-ranked result may not be the controlling clause. Read the whole section.</li><li><strong>PDFs need extractable text.</strong> Image-only scans need OCR first, and DocuLocate does not perform OCR.</li><li><strong>One document at a time.</strong></li></ul>
-<p>Contracts are often confidential. Read the <a href="/privacy/">privacy details</a> before uploading one.</p>`
+<p>Contracts are often confidential. Read the <a href="/privacy/">privacy details</a> before uploading one.</p>
+<p>To compare two versions of a contract and see the meaningful differences, try <a href="https://difffind.com/">DiffFind</a>.</p>`
       }
     ],
     faq: [

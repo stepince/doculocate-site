@@ -190,3 +190,4 @@
 .ad-answer-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--blue);margin-bottom:6px!important}
 .ad-answer-text{font-size:14px;line-height:1.6;color:var(--ink)}
 .ad-answer-hint{font-size:10px;color:#8791a1;margin-top:8px!important}
+.crosslink{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--line);padding-block:40px;margin-bottom:56px}.crosslink h2{font-size:26px;letter-spacing:-.8px;margin-bottom:0}.crosslink .eyebrow{margin-bottom:12px}.crosslink p:not(.eyebrow){font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px}.related-tools a{color:var(--blue)}footer .related-tools{margin-top:4px}@media(max-width:700px){.crosslink{grid-template-columns:1fr;gap:18px;padding-block:32px;margin-bottom:40px}}

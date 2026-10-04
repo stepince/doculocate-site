@@ -66,7 +66,7 @@ ${page.sections.map((s) => `<section><h2>${esc(s.h2)}</h2>\n${s.html}</section>`
 </article>
 <section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
 </main>
-<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
+<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p><p class="related-tools">Related tools: <a href="https://difffind.com/">DiffFind</a> — Semantic document comparison</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
 </body>
 </html>
 `;
