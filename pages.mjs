@@ -49,7 +49,7 @@ export const pages = [
       ['Do I need to use the same words as the document?', 'No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages.'],
       ['Does semantic search replace keyword search?', 'Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only.']
     ],
-    related: ['ctrl-f-alternative', 'search-pdf']
+    related: ['ctrl-f-alternative', 'search-pdf', 'ask-questions-about-a-document']
   },
   {
     slug: 'ctrl-f-alternative',
@@ -225,7 +225,62 @@ export const pages = [
       ['Can it find a clause if I don’t know the legal term?', 'Often, yes. Describe the situation in plain language, and the search looks for passages with related meaning. If results look off, rephrase or try Semantic or Lexical mode.'],
       ['Is it safe to upload a confidential contract?', 'Check the privacy details before you upload. The active document is processed on the application server and held in its memory, private to your browser or account, recent-file history can save a copy in your browser, and only if you add your own AI provider does that provider receive your query and candidate passages.']
     ],
-    related: ['search-pdf', 'semantic-document-search']
+    related: ['search-pdf', 'semantic-document-search', 'ask-questions-about-a-document']
+  },
+  {
+    slug: 'ask-questions-about-a-document',
+    nav: 'Ask a document',
+    title: 'Ask Questions About a Document with Your Own AI Key | DocuLocate',
+    description: 'Ask a question and your own AI provider reads the whole document to answer. When to use Ask instead of search, the size limit, and what it sends.',
+    eyebrow: 'GUIDE',
+    h1: 'Ask questions about a document',
+    lead: 'Search shows you where a document says something. Ask is for the questions search can’t answer from one passage, like “summarize this” or “what are the risks for the tenant?” You ask in your own words, and your AI provider reads the <em>whole</em> document to answer.',
+    sections: [
+      {
+        h2: 'Search or Ask?',
+        html: `<p>DocuLocate has one text box with two modes. Pick the mode with the <strong>Search | Ask</strong> buttons at the top of the search window.</p>
+<div class="seo-table-wrap"><table class="seo-table"><thead><tr><th scope="col"></th><th scope="col">Search</th><th scope="col">Ask</th></tr></thead><tbody>
+<tr><th scope="row">Good for</th><td>“Where does it say…?” Finding the passage, the clause or the spreadsheet row.</td><td>Open-ended questions about the document as a whole: summaries, obligations, risks, key dates.</td></tr>
+<tr><th scope="row">What it reads</th><td>The whole document is searched; the best passages are returned</td><td>The whole document text goes to your AI provider with your question</td></tr>
+<tr><th scope="row">Result</th><td>Ranked source passages, highlighted in the viewer</td><td>A written answer from your AI provider</td></tr>
+<tr><th scope="row">Needs an AI provider</th><td>No. Built-in answers need no AI and no key.</td><td>Yes. Your own provider and API key.</td></tr>
+</tbody></table></div>
+<p>Search is still the way to check an answer: it takes you to the original wording in the document.</p>`
+      },
+      {
+        h2: 'Questions Ask is good at',
+        html: `<ul><li>“Summarize this document in five bullet points.”</li><li>“What are the tenant’s obligations?”</li><li>“What deadlines or notice periods does this contract mention?”</li><li>“What does this report conclude, and what does it recommend?”</li><li>“Is there anything here about subletting?”</li></ul>
+<p>These draw on several parts of a document at once, which is why a single highlighted passage can’t answer them.</p>`
+      },
+      {
+        h2: 'How to use it',
+        html: `<ol><li>Open <strong>Settings</strong>, choose an AI provider (Claude, OpenAI, Gemini, Groq or OpenRouter) and add your own API key. On the hosted app this needs an account, so your key can be stored for you, encrypted.</li><li>Upload a document.</li><li>Choose <strong>Ask</strong> instead of Search. The box changes to “Ask a question about the whole document.”</li><li>Type your question and press <strong>Ask</strong> (or Enter).</li><li>Read the answer in the <strong>Ask</strong> area. The Search area collapses while you ask, and both keep their content, so you can switch back to your search results.</li></ol>
+<p>If no AI provider is active, the Ask button is greyed out, and its tooltip says why.</p>`
+      },
+      {
+        h2: 'The size limit',
+        html: `<p>Ask sends the entire document text, so there is a limit. By default it is <strong>100,000 characters</strong>, roughly 50 pages of ordinary text. In <strong>Settings → Ask → Largest document</strong> you can choose 50,000, 100,000, 200,000 or 400,000 characters; the choice is saved with your account on the hosted app, or in your browser on a local server.</p>
+<p>A document over your limit is <strong>not silently cut short</strong>. DocuLocate tells you it is too long for Ask, and Search still works on it. Pick a size your AI model can read: a larger document costs more and needs a model with a large context window.</p>`
+      },
+      {
+        h2: 'What to know before you rely on an answer',
+        html: `<ul><li><strong>It is AI-written, so it can be wrong.</strong> DocuLocate tells the AI to answer only from your document and to say so when the document does not contain the answer, but nothing guarantees accuracy.</li><li><strong>An Ask answer is not linked to a highlighted passage.</strong> To check an important point, switch to Search and read the source wording in the viewer.</li><li><strong>It uses your key.</strong> Each question sends the full document to your provider and counts against your own account with them. Ask is also rate limited.</li><li><strong>Scanned PDFs need OCR first.</strong> Ask reads the document’s text, and DocuLocate does not perform OCR.</li><li><strong>One document at a time.</strong> Ask works on the document that is open, like search.</li></ul>`
+      },
+      {
+        h2: 'What it sends, and when',
+        html: `<p>Nothing goes to an AI provider unless you add your own key <em>and</em> press Ask. Then DocuLocate sends your question and the document’s full text to the provider you chose. Search and the built-in answers stay on the application server and use no outside service.</p>
+<p>Your provider’s own retention and training policies apply to what it receives. Read the <a href="/privacy/">privacy details</a> before using Ask on a confidential document.</p>`
+      }
+    ],
+    faq: [
+      ['What is Ask?', 'Ask lets you put a question to the whole document. DocuLocate sends your question and the document’s text to the AI provider you set up, and shows the answer it writes. Use it for summaries and open-ended questions; use Search to find where the document says something.'],
+      ['Do I need an AI key to use Ask?', 'Yes. Ask needs an AI provider (Claude, OpenAI, Gemini, Groq or OpenRouter) and your own API key. On the hosted app you also need an account so your key can be stored for you. Search and built-in answers need neither.'],
+      ['How long can the document be?', 'By default up to 100,000 characters, roughly 50 pages of ordinary text. You can choose 50,000, 200,000 or 400,000 characters instead in Settings. A longer document is not cut short; DocuLocate tells you it is too long for Ask, and Search still works on it.'],
+      ['Is an Ask answer reliable?', 'Treat it as a starting point. The AI is told to answer only from your document and to say when the document does not contain the answer, but it can still be wrong. An Ask answer does not highlight a source passage, so use Search to read the original wording before you rely on it.'],
+      ['Does Ask send my document to an AI company?', 'Yes, when you press Ask. The question and the document’s full text go to the provider you chose, and that provider’s retention and training policies apply. Nothing is sent to a provider until you add your own key and use Ask.'],
+      ['How is Ask different from search?', 'Search ranks passages from the document and highlights the matching text so you can read it in place. Ask has your AI provider read the whole document and write an answer. Search is better for finding where something is said; Ask is better for summaries and questions that span the document.']
+    ],
+    related: ['semantic-document-search', 'search-contracts']
   },
   {
     slug: 'faq',
@@ -257,7 +312,7 @@ export const pages = [
       ],
       [
             "Does DocuLocate generate answers or find source text?",
-            "Source passages are the core results. DocuLocate can also show a short answer taken word for word from your document, linked to the passage it came from, with no AI or key needed. It only answers when it is confident; otherwise the Answer label is struck through. If you add your own AI provider, it can write answers instead. Either way, inspect the passage in the document viewer."
+            "Source passages are the core results. DocuLocate can also show a short answer taken word for word from your document, linked to the passage it came from, with no AI or key needed. It only answers when it is confident; otherwise the Answer label is struck through. If you add your own AI provider, it can write answers instead, and its Ask mode can answer open-ended questions from the whole document. Either way, inspect the passage in the document viewer."
       ],
       [
             "Can I search PDFs?",
@@ -265,11 +320,15 @@ export const pages = [
       ],
       [
             "Is DocuLocate a “chat with PDF” tool?",
-            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. A short answer, taken from the document or written by an AI provider you add, can help with a match, but there is no general-purpose chat conversation."
+            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. A short answer, taken from the document or written by an AI provider you add, can help with a match. If you add your own AI provider you can also use Ask to put a question to the whole document, for example a summary, but it answers one question at a time; there is no ongoing chat conversation."
       ],
       [
             "What do Hybrid, Semantic, and Lexical mean?",
             "Hybrid, the default, combines meaning and keyword matches. Semantic focuses on meaning. Lexical works like Ctrl+F: every occurrence of the text you type, in order, with an optional Match case control."
+      ],
+      [
+            "Can I ask a question about the whole document?",
+            "Yes, with your own AI provider. Choose Ask instead of Search, type a question such as “summarize this”, and your provider reads the whole document to answer. Ask needs an account on the hosted app and your own API key, works on documents up to a size limit you can set (100,000 characters by default), and does not highlight a source passage, so use Search to check the original wording."
       ],
       [
             "Are recent documents saved?",
@@ -288,7 +347,7 @@ export const pages = [
             "The app can report that no strong match was found and show lower-confidence matches separately. Try rephrasing the query or changing search mode, then review the source yourself."
       ]
 ],
-    related: ['semantic-document-search', 'ctrl-f-alternative', 'search-pdf', 'search-excel-csv']
+    related: ['semantic-document-search', 'ctrl-f-alternative', 'search-pdf', 'search-excel-csv', 'ask-questions-about-a-document']
   }
 ];
 
