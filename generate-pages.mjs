@@ -7,12 +7,14 @@ const strip = (s) => s.replace(/<[^>]+>/g, '');
 const json = (o) => JSON.stringify(o).replaceAll('<', '\\u003c');
 const bySlug = Object.fromEntries(pages.map((p) => [p.slug, p]));
 
-const nav = pages.filter((p) => p.header !== false).map((p) => `<a href="/${p.slug}/">${esc(p.nav)}</a>`).join('');
+const link = (p) => `<a href="/${p.slug}/">${esc(p.nav)}</a>`;
+const nav = pages.filter((p) => p.header !== false).map(link).join('');
+const footerNav = pages.filter((p) => p.header !== false || p.footer).map(link).join('');
 
 function render(page) {
   const url = `${siteUrl}/${page.slug}/`;
   const ld = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', name: page.h1, description: page.description, url, isPartOf: { '@type': 'WebSite', name: 'DocuLocate', url: `${siteUrl}/` } },
+    { '@context': 'https://schema.org', '@type': 'WebPage', name: strip(page.h1), description: page.description, url, isPartOf: { '@type': 'WebSite', name: 'DocuLocate', url: `${siteUrl}/` } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'DocuLocate', item: `${siteUrl}/` },
       { '@type': 'ListItem', position: 2, name: page.nav, item: url }
@@ -38,6 +40,7 @@ function render(page) {
 <meta property="og:image" content="${siteUrl}/assets/social.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DocuLocate. AI document search with source verification. Ask your document. Find the answer. Verify the source.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
 <meta name="twitter:description" content="${esc(page.description)}">
@@ -62,11 +65,11 @@ function render(page) {
 <div class="hero-actions"><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a><a class="secondary" href="/#demo">See the interactive example <span aria-hidden="true">↓</span></a></div>
 ${page.sections.map((s) => `<section><h2>${esc(s.h2)}</h2>\n${s.html}</section>`).join('\n')}
 <section class="faq">${page.faqHeading === null ? '' : '<h2>Questions, answered</h2>'}<div class="faq-list">${page.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(strip(a))}</p></details>`).join('')}</div></section>
-<section class="seo-related"><h2>Keep reading</h2><ul>${related.map((r) => `<li><a href="/${r.slug}/">${esc(r.h1)}</a></li>`).join('')}<li><a href="/">How DocuLocate works</a></li></ul></section>
+<section class="seo-related"><h2>Keep reading</h2><ul>${related.map((r) => `<li><a href="/${r.slug}/">${esc(r.linkText || r.h1)}</a></li>`).join('')}<li><a href="/">How DocuLocate works</a></li></ul></section>
 </article>
-<section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
+<section class="closing wrap"><p class="eyebrow">ASK. FIND. VERIFY.</p><h2>Ask your document. Find the answer. Verify the source.</h2><p>DocuLocate is Ctrl+F for meaning.</p><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
 </main>
-<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p><p class="related-tools">Related tools: <a href="https://difffind.com/">DiffFind</a> — Semantic document comparison</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/self-hosted/">Self-hosted</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
+<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>AI document search with source verification.</p><p class="related-tools">Related tools: <a href="https://difffind.com/">DiffFind</a> — Semantic document comparison</p></div><nav aria-label="Footer"><a href="/">Product</a>${footerNav}<a href="/faq/">FAQ</a><a href="/self-hosted/">Self-hosted</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
 </body>
 </html>
 `;

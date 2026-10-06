@@ -1,6 +1,6 @@
 # DocuLocate marketing site
 
-A responsive, dependency-free static website focused on **semantic search inside one document**. Upload one document, describe what you need, and locate the original source passage.
+A responsive, dependency-free static website positioned as **AI document search with source verification**: *Ask your document. Find the answer. Verify the source.* ("Ctrl+F for meaning"). Lead with what users accomplish; keep technical terms (embeddings, RAG, reranking) in supporting copy.
 
 ## Run and deploy
 
@@ -63,3 +63,7 @@ Changed since the October 2 audit, and updated here: **Lexical is now Ctrl+F** (
 Checked against the application's source (`src/api/routes/ask.route.ts`, `src/search/ask.ts`, `src/api/routes/ui.route.ts`, `src/api/routes/settings.route.ts`) and its running UI.
 
 New in the app, and added here as the guide page `ask-questions-about-a-document` (plus a "Go deeper" card, FAQ entries, related links and a privacy sentence): **Ask**. A Search | Ask choice beside the query box switches the same text box between finding passages and asking the AI provider a question about the **whole document**. Ask needs an active AI provider (your own key; an account on the hosted app) and is greyed out otherwise. The document is sent in full, up to a size limit (default 100,000 characters, chosen per person in Settings → Ask → Largest document from 50,000 / 100,000 / 200,000 / 400,000; an over-limit document is refused with a message, never cut short). The reply is AI-written plain text with no highlighted source passage, so the guide tells people to use Search to check it, and promises no accuracy. Search and Ask have separate collapsible result areas. Settings are saved with the account (hosted) or in the browser (local). Do not describe Ask as available in the interactive demo: the demo has no AI calls.
+
+## Messaging update — October 6, 2026
+
+Repositioned the homepage and guide pages around AI document search and source verification (Ask → Find → Answer → Verify), with Search (find evidence, answers linked to source) clearly distinct from Ask (whole document to your AI provider, no highlighted source). URLs, canonicals and existing structured data are unchanged; titles, descriptions, H1s and Open Graph/Twitter text were rewritten per page. New guide pages: `document-search-with-source-verification` and `chat-with-pdf-alternative`. Pages flagged `footer: true` (with `header: false`) appear only in the footer to keep the header nav short. Copy never claims source verification prevents errors; Ask answers are described as unhighlighted. AI reranking and AI answers are described as optional and bring-your-own-provider.

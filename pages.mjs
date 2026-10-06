@@ -4,15 +4,16 @@ export const pages = [
   {
     slug: 'semantic-document-search',
     nav: 'Semantic search',
-    title: 'Semantic Document Search — Find Passages by Meaning | DocuLocate',
-    description: 'Semantic document search finds the passage you mean, even when it uses different words. See how it works and when keyword search is the better choice.',
+    title: 'Semantic Document Search: Search Documents by Meaning | DocuLocate',
+    description: 'Semantic document search finds information by meaning, not just exact words, then takes you to the source passage. See how it works and when keyword search is better.',
     eyebrow: 'GUIDE',
     h1: 'Semantic document search',
-    lead: 'Semantic document search finds the passages that match what you <em>mean</em>, not only the words you typed. Describe what you are looking for, and get the relevant passage back, even if the author phrased it differently.',
+    linkText: 'Semantic document search: search documents by meaning',
+    lead: 'Find information by meaning, not just exact words. Describe what you are looking for, and DocuLocate finds the passages that match what you <em>mean</em> and takes you to them in the original document, even if the author phrased it differently.',
     sections: [
       {
-        h2: 'How semantic search works',
-        html: `<p>Keyword search asks, “Does this text contain these characters?” Semantic search asks, “Which passage is about the same thing as this question?”</p>
+        h2: 'How searching by meaning works',
+        html: `<p>Think of it as <a href="/ctrl-f-alternative/">Ctrl+F for meaning</a>. Keyword search asks, “Does this text contain these characters?” Semantic search asks, “Which passage is about the same thing as this question?”</p>
 <p>Semantic search systems typically split a document into passages and turn each one into a numerical representation of its meaning. Your query gets the same treatment. The passages whose meaning sits closest to the query are ranked first.</p>
 <p>That is why a question in everyday language can lead to formal, technical, or legal wording in the source.</p>`
       },
@@ -21,6 +22,11 @@ export const pages = [
         html: `<p>Suppose you search a service agreement for this:</p>
 <div class="seo-example"><p class="mini-label">YOU SEARCH</p><p class="seo-query">Can I cancel early?</p><p class="mini-label">POSSIBLE SOURCE PASSAGE</p><blockquote>“Customer may <mark>discontinue Services prior to expiration of the Initial Term</mark>…”</blockquote><span class="source-line">Illustrative clause · review the full terms in context</span></div>
 <p>The document never says “cancel” or “early.” An exact-match search for those words finds nothing. A semantic search connects “cancel early” with “discontinue … prior to expiration.”</p>`
+      },
+      {
+        h2: 'From a meaning-based match to a source you can verify',
+        html: `<p>Finding a passage is only half the job. You also need to trust it. In DocuLocate, selecting a result jumps to that passage in the original document and highlights it, so you read the actual wording in its own context. You can hide the highlight when you just want to read.</p>
+<p>That is the difference between searching documents with AI and taking an AI’s word for it. Read more about <a href="/document-search-with-source-verification/">document search with source verification</a>.</p>`
       },
       {
         h2: 'When keyword search is still the better tool',
@@ -44,21 +50,22 @@ export const pages = [
       }
     ],
     faq: [
-      ['What is semantic document search?', 'Semantic document search finds passages based on their meaning rather than exact wording. You describe what you want to find, and the search looks for related information in the document.'],
+      ['What is semantic document search?', 'Semantic document search finds passages based on their meaning rather than exact wording. You describe what you want to find, and the search looks for related information in the document. DocuLocate then takes you to the passage in the original document so you can verify it.'],
       ['Is semantic search the same as AI chat?', 'No. Semantic search returns the passages in your document that best match your query, so you can read the source yourself. DocuLocate can show a short answer taken word for word from the document (no AI needed), and an AI-written answer if you add your own provider, but it is not a general-purpose chat tool.'],
       ['Do I need to use the same words as the document?', 'No. Use natural language to describe the information you need. Specific questions and clear concepts tend to find more relevant passages.'],
       ['Does semantic search replace keyword search?', 'Not entirely. Keyword search is better for exact names, numbers, and phrases. DocuLocate’s default Hybrid mode combines both, and Lexical mode is available when you want words only.']
     ],
-    related: ['ctrl-f-alternative', 'search-pdf', 'ask-questions-about-a-document']
+    related: ['document-search-with-source-verification', 'ctrl-f-alternative', 'search-pdf', 'ask-questions-about-a-document']
   },
   {
     slug: 'ctrl-f-alternative',
     nav: 'Ctrl+F alternative',
-    title: 'A Better Alternative to Ctrl+F for Long Documents | DocuLocate',
-    description: 'Ctrl+F only finds exact text. Search a document by meaning instead and jump to the passage you need, in PDFs, Word files, text, and spreadsheets.',
+    title: 'Ctrl+F for Meaning: A Better Way to Search Documents | DocuLocate',
+    description: 'Ctrl+F finds matching words. DocuLocate finds meaning. Search PDFs, Word files, text, and spreadsheets with AI and jump to the source passage you need.',
     eyebrow: 'GUIDE',
     h1: 'A better alternative to Ctrl+F for long documents',
-    lead: 'Ctrl+F is great when you know the exact words. It is much less helpful when you know the question but not the author’s wording. DocuLocate lets you describe what you need and jumps to the passage that answers it.',
+    linkText: 'Ctrl+F for meaning: a better alternative to Ctrl+F',
+    lead: 'DocuLocate is Ctrl+F for meaning. Ctrl+F searches for matching characters and words; DocuLocate searches for concepts, intent, and meaning. When you know the question but not the author’s wording, describe what you need and jump to the passage that answers it.',
     sections: [
       {
         h2: 'Where Ctrl+F falls short',
@@ -69,7 +76,7 @@ export const pages = [
         h2: 'Search by meaning instead',
         html: `<p>With DocuLocate you type what you are looking for, in your own words:</p>
 <div class="seo-example"><p class="mini-label">CTRL+F</p><p class="seo-query">Can I cancel early? <span class="seo-miss">→ No matches</span></p><p class="mini-label">DOCULOCATE</p><blockquote><mark>“…Customer elects to discontinue Services prior to expiration of the Initial Term…”</mark></blockquote><span class="source-line">Illustrative example · review the full terms in context</span></div>
-<p>The result is the relevant source passage, highlighted in the document viewer, so you can read it in context rather than trusting a summary.</p>`
+<p>The result is the relevant source passage, highlighted in the document viewer, so you can read it in context and verify it rather than trusting a summary. Try a question like “How can I improve visibility?”: the passage can be found even when none of those words appear in it.</p>`
       },
       {
         h2: 'Ctrl+F vs. DocuLocate',
@@ -96,16 +103,17 @@ export const pages = [
       ['Can it search PDFs and spreadsheets?', 'Yes. The app accepts PDF, Word (.docx), plain text, Excel (.xlsx and .xls), and CSV files. PDFs need extractable text, because image-only scans need OCR first and DocuLocate does not perform OCR.'],
       ['What if the answer isn’t in the document?', 'The app can report that no strong match was found and show lower-confidence matches separately. When a question has no answer, the Answer label is shown struck through (hover it for the reason). Try rephrasing the query or changing the search type, then review the source yourself.']
     ],
-    related: ['semantic-document-search', 'search-pdf']
+    related: ['semantic-document-search', 'document-search-with-source-verification', 'search-pdf']
   },
   {
     slug: 'search-pdf',
     nav: 'Search PDFs',
-    title: 'Search a PDF by Meaning — Find the Right Page | DocuLocate',
-    description: 'Search a PDF in your own words and jump to the matching passage in a page viewer, even when the wording differs. Works with PDFs that have extractable text.',
+    title: 'AI PDF Search: Search Inside a PDF by Meaning | DocuLocate',
+    description: 'Search a PDF with AI in your own words. Find answers by meaning and jump to the matching passage on its page. Works with PDFs that have extractable text.',
     eyebrow: 'GUIDE',
     h1: 'Search a PDF by meaning',
-    lead: 'Long PDFs, such as contracts, policies, manuals, and reports, are hard to search when you don’t know the exact wording. Upload one, describe what you need, and DocuLocate highlights the matching passage on its page.',
+    linkText: 'AI PDF search: search a PDF by meaning',
+    lead: 'Long PDFs, such as contracts, policies, manuals, and reports, are hard to search when you don’t know the exact wording. Upload one, describe what you need, and DocuLocate searches the PDF with AI by meaning and highlights the matching passage on its page.',
     sections: [
       {
         h2: 'Why searching a PDF is harder than it should be',
@@ -137,17 +145,20 @@ export const pages = [
       ['Can I search a scanned PDF?', 'Only if it contains extractable text. Image-only scans need OCR first, and DocuLocate does not perform OCR.'],
       ['Will it show me the page the result came from?', 'Yes. Selecting a result jumps to its location in the built-in page viewer and highlights the passage. Results show the PDF page when it is available.'],
       ['Can I search several PDFs at once?', 'No. DocuLocate searches one active document at a time. Replace the document to search another file.'],
-      ['Is this a chat-with-PDF tool?', 'No. You search, review the matching passages, and inspect the source. The app can show a short answer taken word for word from the document (no AI needed), or an AI-written one if you add your own provider, but there is no general chat conversation.']
+      ['Is this a chat-with-PDF tool?', 'Not in the usual sense. DocuLocate is a chat with PDF alternative built around finding the answer and showing the source (see the chat with PDF alternative page). You search, review the matching passages, and inspect the source. The app can show a short answer taken word for word from the document (no AI needed), or an AI-written one if you add your own provider, but there is no general chat conversation.']
     ],
-    related: ['semantic-document-search', 'search-excel-csv']
+    related: ['semantic-document-search', 'document-search-with-source-verification', 'chat-with-pdf-alternative', 'search-excel-csv']
   },
   {
     slug: 'search-excel-csv',
     nav: 'Search spreadsheets',
-    title: 'Search Excel and CSV Files by Meaning | DocuLocate',
-    description: 'Search an Excel workbook or CSV file in plain language and jump to the matching row, with sheet tabs and highlighted rows in a grid viewer.',
+    header: false,
+    footer: true,
+    title: 'Search Excel and CSV Files with AI, by Meaning | DocuLocate',
+    description: 'Search Excel and CSV files with AI in plain language. Find the row you mean and jump to it, with sheet tabs and highlighted rows in a grid viewer.',
     eyebrow: 'GUIDE',
     h1: 'Search an Excel or CSV file by meaning',
+    linkText: 'Search Excel and CSV files with AI',
     lead: 'Spreadsheets hide information in rows, columns, and sheet tabs. Describe what you need in plain language, and DocuLocate highlights the matching row in a grid viewer.',
     sections: [
       {
@@ -186,10 +197,13 @@ export const pages = [
   {
     slug: 'search-contracts',
     nav: 'Search contracts',
-    title: 'Find Clauses in a Contract by Meaning | DocuLocate',
-    description: 'Search a contract in plain language and jump to the clause you mean: termination, liability, payment, renewal. Read the source passage in context.',
+    header: false,
+    footer: true,
+    title: 'Search Contracts with AI: Find Clauses by Meaning | DocuLocate',
+    description: 'Search a contract with AI in plain language and jump to the clause you mean: termination, liability, payment, renewal. Verify it in the original text.',
     eyebrow: 'GUIDE',
     h1: 'Find clauses in a contract by meaning',
+    linkText: 'Search contracts with AI: find clauses by meaning',
     lead: 'You know what you need to find out: can I leave early, who is liable, when is payment due. You don’t know which section, or what words the drafter used. Describe the question, and DocuLocate highlights the passage that addresses it.',
     sections: [
       {
@@ -230,11 +244,12 @@ export const pages = [
   {
     slug: 'ask-questions-about-a-document',
     nav: 'Ask a document',
-    title: 'Ask Questions About a Document with Your Own AI Key | DocuLocate',
-    description: 'Ask a question and your own AI provider reads the whole document to answer. When to use Ask instead of search, the size limit, and what it sends.',
+    title: 'Ask Questions About a Document with AI | DocuLocate',
+    description: 'Ask your document anything: summaries, explanations, key points, and analysis from your own AI provider. How Ask differs from Search, its size limit, and what it sends.',
     eyebrow: 'GUIDE',
-    h1: 'Ask questions about a document',
-    lead: 'Search shows you where a document says something. Ask is for the questions search can’t answer from one passage, like “summarize this” or “what are the risks for the tenant?” You ask in your own words, and your AI provider reads the <em>whole</em> document to answer.',
+    h1: 'Ask your document anything',
+    linkText: 'Ask questions about a document',
+    lead: 'Ask your document anything: summarize it, explain complex content, pull out the key points, or analyze it with AI. <strong>Search</strong> is built to find evidence and connect an answer to its source passage. <strong>Ask</strong> gives your AI provider the <em>whole</em> document, for the questions a single passage can’t answer, like “summarize this” or “what are the risks for the tenant?”',
     sections: [
       {
         h2: 'Search or Ask?',
@@ -245,7 +260,7 @@ export const pages = [
 <tr><th scope="row">Result</th><td>Ranked source passages, highlighted in the viewer</td><td>A written answer from your AI provider</td></tr>
 <tr><th scope="row">Needs an AI provider</th><td>No. Built-in answers need no AI and no key.</td><td>Yes. Your own provider and API key.</td></tr>
 </tbody></table></div>
-<p>Search is still the way to check an answer: it takes you to the original wording in the document.</p>`
+<p>Search is still the way to check an answer: it takes you to the original wording in the document, which is the idea behind <a href="/document-search-with-source-verification/">document search with source verification</a>.</p>`
       },
       {
         h2: 'Questions Ask is good at',
@@ -280,20 +295,120 @@ export const pages = [
       ['Does Ask send my document to an AI company?', 'Yes, when you press Ask. The question and the document’s full text go to the provider you chose, and that provider’s retention and training policies apply. Nothing is sent to a provider until you add your own key and use Ask.'],
       ['How is Ask different from search?', 'Search ranks passages from the document and highlights the matching text so you can read it in place. Ask has your AI provider read the whole document and write an answer. Search is better for finding where something is said; Ask is better for summaries and questions that span the document.']
     ],
-    related: ['semantic-document-search', 'search-contracts']
+    related: ['document-search-with-source-verification', 'chat-with-pdf-alternative', 'semantic-document-search', 'search-contracts']
+  },
+  {
+    slug: 'document-search-with-source-verification',
+    nav: 'Source verification',
+    title: 'Document Search with Source Verification | DocuLocate',
+    description: 'Get answers from a document and verify them. DocuLocate finds the supporting passage, jumps to it in the original document, and highlights it so you can check the source.',
+    eyebrow: 'GUIDE',
+    h1: 'AI document search with source verification',
+    linkText: 'Document search with source verification',
+    lead: 'Don’t just get an AI answer. See where the answer came from. Ask a question, and DocuLocate finds the supporting passage, takes you to it in the original document, and highlights it, so you can read the evidence in its own context.',
+    sections: [
+      {
+        h2: 'Ask. Find. Answer. Verify.',
+        html: `<ol><li><strong>Ask.</strong> Type a question in your own words, such as “What happens if I end the agreement early?”</li><li><strong>Find.</strong> DocuLocate searches the document by meaning and by keywords together (hybrid search) and ranks the strongest supporting passages.</li><li><strong>Answer.</strong> It can show a focused answer. By default the answer is a sentence or value taken word for word from your document. If you add your own AI provider, the AI can also rerank the evidence and write the answer.</li><li><strong>Verify.</strong> Select the answer or a source passage to jump to it in the original document. The supporting text is highlighted so you can check the answer against it. Select it again to hide the highlight when you just want to read.</li></ol>
+<p>That is the whole idea: from question to source in one click.</p>`
+      },
+      {
+        h2: 'Why a source matters',
+        html: `<p>An answer you cannot check is a claim you have to take on trust. A contract clause, a policy rule, or a figure in a report is only useful if it matches what the document really says, in the context around it.</p>
+<p>So DocuLocate does not stop at the answer. It connects the answer to the passage it came from and shows you that passage in the original document: the PDF page, the Word text, or the spreadsheet row. You read the evidence, and then you decide.</p>`
+      },
+      {
+        h2: 'An example',
+        html: `<div class="seo-example"><p class="mini-label">YOU ASK</p><p class="seo-query">What happens if I end the agreement early?</p><p class="mini-label">ANSWER · LINKED TO ITS SOURCE · ILLUSTRATIVE</p><blockquote>“Customer shall pay an amount equal to the remaining monthly charges.”</blockquote><p class="mini-label">SOURCE · MASTER-SERVICE-AGREEMENT.PDF · PAGE 37</p><blockquote>“12.2 In the event Customer elects to <mark>discontinue Services prior to expiration of the Initial Term</mark>, Customer shall pay an amount equal to the remaining monthly charges.”</blockquote><span class="source-line">Fictional example · review the full terms in context</span></div>
+<p>The question and the clause share almost no words. The answer points back to the clause, so you can confirm the conditions around it.</p>`
+      },
+      {
+        h2: 'What source verification does, and does not, do',
+        html: `<ul><li><strong>It makes answers easier to check.</strong> You can compare an answer with the supporting text in the original document.</li><li><strong>It does not guarantee an answer is correct.</strong> Relevance is a guide. Read the highlighted passage and what surrounds it, especially for legal, financial, or medical documents.</li><li><strong>If there is no confident answer, it says so.</strong> The Answer label is shown struck through instead of guessing, and you can read the matching passages below it.</li><li><strong>Ask is different.</strong> An <a href="/ask-questions-about-a-document/">Ask answer</a> is written by your AI provider from the whole document and is not linked to a highlighted passage. Use Search to check it.</li></ul>`
+      },
+      {
+        h2: 'The technology behind it, briefly',
+        html: `<p>You do not need to know any of this to use DocuLocate. Under the hood, it combines lexical (keyword) search, semantic (meaning-based) search, hybrid retrieval, reranking, optional AI answer generation, and source navigation. Each part serves the same goal: finding the right passage and showing it to you. Read more about <a href="/semantic-document-search/">searching documents by meaning</a>.</p>
+<p>Supported formats: PDF (with extractable text), Word (.docx), plain text (.txt), Excel (.xlsx and .xls), and CSV. One document at a time. Before you upload anything sensitive, read the <a href="/privacy/">privacy details</a>.</p>`
+      }
+    ],
+    faq: [
+      ['What does source verification mean in DocuLocate?', 'Every answer and result is connected to the passage it came from. Select it and DocuLocate jumps to that passage in the original document and highlights it, so you can verify the answer against the source.'],
+      ['Does source verification stop AI from being wrong?', 'No. It makes answers easier to check against the original document, but it does not guarantee correctness. Always read the highlighted passage and its context before you rely on an answer.'],
+      ['Can I hide the highlight?', 'Yes. Select the answer or result again to turn the highlight off, which is easier when you just want to read the document.'],
+      ['Does it work with spreadsheets as well as PDFs?', 'Yes. For a PDF the source is the highlighted passage on its page. For Excel and CSV files it is the highlighted row, with sheet tabs in the viewer.'],
+      ['Do I need an AI provider to verify answers?', 'No. Built-in answers are taken word for word from your document and need no AI or key. You can add your own AI provider for AI-written answers; either way, you check the source in the viewer.']
+    ],
+    related: ['semantic-document-search', 'chat-with-pdf-alternative', 'ask-questions-about-a-document', 'search-pdf']
+  },
+  {
+    slug: 'chat-with-pdf-alternative',
+    nav: 'Chat with PDF alternative',
+    header: false,
+    footer: true,
+    title: 'A Chat with PDF Alternative That Shows Its Source | DocuLocate',
+    description: 'Looking for a chat with PDF alternative? DocuLocate finds the answer in your document and takes you to the highlighted source, so you can verify it instead of trusting a chat reply.',
+    eyebrow: 'GUIDE',
+    h1: 'A chat with PDF alternative that shows the source',
+    linkText: 'Chat with PDF alternative: ask a PDF and verify the source',
+    lead: 'Most “chat with PDF” tools give you an answer and ask you to trust it. DocuLocate is built around the next step: ask your document, find the answer, and verify the source in the original document.',
+    sections: [
+      {
+        h2: 'Chat with a PDF, or find and verify the answer?',
+        html: `<div class="seo-table-wrap"><table class="seo-table"><thead><tr><th scope="col"></th><th scope="col">Typical chat with PDF</th><th scope="col">DocuLocate</th></tr></thead><tbody>
+<tr><th scope="row">Starts with</th><td>A conversation</td><td>A question about one document</td></tr>
+<tr><th scope="row">Result</th><td>A written reply</td><td>An answer plus the ranked supporting passages</td></tr>
+<tr><th scope="row">Checking it</th><td>Re-read the document yourself</td><td>Click the answer or source to jump to the highlighted passage in the original</td></tr>
+<tr><th scope="row">Finding wording</th><td>Often not the point</td><td>Hybrid search by meaning and keywords, plus Ctrl+F-style Lexical search</td></tr>
+<tr><th scope="row">Broad questions</th><td>Core feature</td><td>Ask, with your own AI provider: summaries, explanations, analysis</td></tr>
+</tbody></table></div>`
+      },
+      {
+        h2: 'When DocuLocate is the better fit',
+        html: `<ul><li>You need to <strong>check</strong> what a contract, policy, or report really says, not just read a summary.</li><li>You want to <strong>cite or quote</strong> the exact passage.</li><li>You are searching a <strong>spreadsheet</strong> and want the matching row, not a paraphrase.</li><li>You want exact-text search (Ctrl+F style) and meaning-based search in one place.</li></ul>`
+      },
+      {
+        h2: 'When you want a broader conversation',
+        html: `<p>DocuLocate’s <a href="/ask-questions-about-a-document/">Ask</a> mode covers many of the same jobs as a chat tool: summarize a document, explain complex content, list the key points, or analyze information. It sends your question and the whole document to the AI provider you choose, and it answers one question at a time. There is no ongoing chat conversation, and Ask answers are not linked to a highlighted passage, so pair them with Search when accuracy matters.</p>`
+      },
+      {
+        h2: 'Ask a PDF in three steps',
+        html: `<ol><li>Upload a PDF with extractable text (or a Word, text, Excel, or CSV file).</li><li>Ask in your own words and read the answer and ranked passages.</li><li>Select the answer to jump to the highlighted source in the original document.</li></ol>
+<p>Learn more about <a href="/search-pdf/">searching a PDF by meaning</a> and <a href="/document-search-with-source-verification/">source verification</a>. Image-only scans need OCR first, and DocuLocate does not perform OCR.</p>`
+      }
+    ],
+    faq: [
+      ['Is DocuLocate a chat with PDF tool?', 'It is an alternative. You ask a question about one document and get an answer connected to its source passage. For broader questions, Ask lets your own AI provider read the whole document, one question at a time.'],
+      ['What can I ask a PDF?', 'Questions such as what a clause says, what a deadline is, or who is responsible for something. With Ask and your own AI provider you can also request summaries, explanations, and key points.'],
+      ['Can I see where an answer came from?', 'With Search, yes. Select the answer or a result and the supporting passage is highlighted in the original document. Ask answers are written by your AI provider and do not highlight a passage.'],
+      ['Can it chat across several documents?', 'No. DocuLocate works with one active document at a time.']
+    ],
+    related: ['document-search-with-source-verification', 'ask-questions-about-a-document', 'search-pdf', 'semantic-document-search']
   },
   {
     slug: 'faq',
     nav: 'FAQ',
     header: false,
     faqHeading: null,
-    title: 'DocuLocate FAQ — Semantic Search, Formats, Privacy | DocuLocate',
-    description: 'Answers about semantic document search, supported file formats, PDF search, search types, recent files, and what to do when there is no good match.',
+    title: 'DocuLocate FAQ: AI Document Search, Formats, Source Verification',
+    description: 'Answers about AI document search, source verification, Ask vs Search, supported file formats, PDF search, search types, and what to do when there is no good match.',
     eyebrow: 'FAQ',
     h1: 'Questions, answered',
-    lead: 'Quick answers about how DocuLocate searches a document, what it supports, and what to expect from the results.',
+    lead: 'Quick answers about how DocuLocate searches documents with AI, how to verify an answer against its source, what it supports, and what to expect from the results.',
     sections: [],
     faq: [
+      [
+            "What is DocuLocate?",
+            "DocuLocate is AI document search with source verification. Ask your document a question, find the answer by meaning rather than exact words, and jump to the supporting passage in the original document to verify it."
+      ],
+      [
+            "How do I verify an answer?",
+            "Select the answer or a result card. DocuLocate jumps to the supporting passage in the original document and highlights it so you can read the wording in context. Select it again to hide the highlight. This makes an answer easier to check; it does not guarantee that an answer is correct."
+      ],
+      [
+            "What is the difference between Search and Ask?",
+            "Search finds relevant evidence and connects answers to source passages. Ask sends your question and the whole document to your own AI provider for summaries, explanations, and broader analysis. Ask does not highlight a source passage, so use Search to check it."
+      ],
       [
             "What is semantic document search?",
             "Semantic document search finds passages based on their meaning. Describe what you want to find, and DocuLocate looks for related information inside the document you upload."
@@ -320,7 +435,7 @@ export const pages = [
       ],
       [
             "Is DocuLocate a “chat with PDF” tool?",
-            "DocuLocate is primarily designed to locate relevant information within a document. You search, review passages, and inspect the source. A short answer, taken from the document or written by an AI provider you add, can help with a match. If you add your own AI provider you can also use Ask to put a question to the whole document, for example a summary, but it answers one question at a time; there is no ongoing chat conversation."
+            "DocuLocate is a chat with PDF alternative built around verification. Instead of an open-ended chat, you ask a question, find the answer, and verify the source in the original document. A short answer, taken from the document or written by an AI provider you add, can help with a match. If you add your own AI provider you can also use Ask to put a question to the whole document, for example a summary, but it answers one question at a time; there is no ongoing chat conversation."
       ],
       [
             "What do Hybrid, Semantic, and Lexical mean?",
@@ -347,7 +462,7 @@ export const pages = [
             "The app can report that no strong match was found and show lower-confidence matches separately. Try rephrasing the query or changing search mode, then review the source yourself."
       ]
 ],
-    related: ['semantic-document-search', 'ctrl-f-alternative', 'search-pdf', 'search-excel-csv', 'ask-questions-about-a-document']
+    related: ['document-search-with-source-verification', 'semantic-document-search', 'ctrl-f-alternative', 'search-pdf', 'chat-with-pdf-alternative', 'search-excel-csv', 'ask-questions-about-a-document']
   }
 ];
 
