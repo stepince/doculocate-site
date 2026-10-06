@@ -29,7 +29,7 @@ function render(page) {
 <meta name="description" content="${esc(page.description)}">
 <meta name="theme-color" content="#f8f9fc">
 <link rel="canonical" href="${url}">
-<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"><link rel="icon" href="/assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="/site.webmanifest"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192"><link rel="manifest" href="/site.webmanifest"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="DocuLocate">
 <meta property="og:title" content="${esc(page.title)}">
