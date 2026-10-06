@@ -4,7 +4,7 @@ import './generate-pages.mjs';
 // Copy static sources; no runtime dependencies or framework required.
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
-for (const file of ['index.html', 'styles.css', 'script.js', 'app-ping.js', 'assets', 'privacy', 'terms', ...pages.map((p) => p.slug), 'robots.txt', 'sitemap.xml', 'CNAME', 'favicon.ico', 'site.webmanifest', '404.html']) {
+for (const file of ['index.html', 'styles.css', 'script.js', 'app-ping.js', 'assets', 'privacy', 'terms', 'self-hosted', ...pages.map((p) => p.slug), 'robots.txt', 'sitemap.xml', 'CNAME', 'favicon.ico', 'site.webmanifest', '404.html']) {
   await cp(file, `dist/${file}`, { recursive: true });
 }
 // Configure only when a working application endpoint is ready.

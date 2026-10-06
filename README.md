@@ -34,6 +34,7 @@ The build replaces all app links in its output. Secondary links open the on-page
 - `styles.css`: responsive site styles; new positioning styles follow the existing base styles. The demo's styles are one readable block at the end of the file, namespaced `ad-` and `.app-demo`, with values taken from the application's stylesheet so the demo matches the product.
 - `privacy/` and `terms/`: current processing details and website terms.
 - `assets/social.svg` and `assets/social.png`: social preview artwork and rendered image.
+- `assets/youtube-*.svg` / `.png`: the DocuLocate YouTube channel artwork (profile, banner, watermark) and 1280x720 video thumbnails, each with an editable SVG source and a rendered PNG. `youtube-thumbnail-ask-whole-document` is the Ask feature thumbnail; the SVG is the source of truth, so edit it and re-render the PNG at exactly 1280x720 (YouTube's limit is 2 MB).
 
 Marketed file-picker formats are PDF, DOCX, TXT, XLSX, XLS, and CSV. Add verified formats as static entries in `#formats` and update the FAQ and metadata together. The PDF viewer displays pages, DOCX uses a formatted rendering with text fallback, and spreadsheets use a grid with sheet tabs and row highlights. Structured headings are not advertised for DOCX.
 

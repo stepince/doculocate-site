@@ -4,11 +4,11 @@ import { extname, resolve, sep } from 'node:path';
 import { pages } from './pages.mjs';
 const root = resolve(process.env.SERVE_DIST === '1' ? 'dist' : '.');
 const types = { '.ico': 'image/x-icon', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml' };
-const files = new Set(['favicon.ico', 'index.html', 'styles.css', 'script.js', 'app-ping.js', 'robots.txt', 'sitemap.xml', '404.html', 'privacy/index.html', 'terms/index.html', ...pages.map((p) => `${p.slug}/index.html`)]);
+const files = new Set(['favicon.ico', 'index.html', 'styles.css', 'script.js', 'app-ping.js', 'robots.txt', 'sitemap.xml', '404.html', 'privacy/index.html', 'terms/index.html', 'self-hosted/index.html', ...pages.map((p) => `${p.slug}/index.html`)]);
 createServer(async (req, res) => {
   try {
     let path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    if (['/privacy', '/terms', ...pages.map((p) => `/${p.slug}`)].includes(path)) {
+    if (['/privacy', '/terms', '/self-hosted', ...pages.map((p) => `/${p.slug}`)].includes(path)) {
       res.writeHead(301, { Location: `${path}/` }).end();
       return;
     }
@@ -18,7 +18,7 @@ createServer(async (req, res) => {
     if (!file.startsWith(root + sep) || (!files.has(relative) && !/^assets\/[a-zA-Z0-9_-]+\.(svg|png)$/.test(relative))) throw new Error('Not found');
     let data = await readFile(file);
     // Local development opens the running app; production output retains its configured URL.
-    if (relative.endsWith('index.html') && !/^(privacy|terms)\//.test(relative) && process.env.SERVE_DIST !== '1') {
+    if (relative.endsWith('index.html') && !/^(privacy|terms|self-hosted)\//.test(relative) && process.env.SERVE_DIST !== '1') {
       data = Buffer.from(data.toString().replaceAll('href="https://app.doculocate.com/" data-app-link', 'href="http://localhost:4100/" data-app-link'));
     }
     res.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream', 'X-Content-Type-Options': 'nosniff' }).end(data);

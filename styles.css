@@ -191,3 +191,7 @@
 .ad-answer-text{font-size:14px;line-height:1.6;color:var(--ink)}
 .ad-answer-hint{font-size:10px;color:#8791a1;margin-top:8px!important}
 .crosslink{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--line);padding-block:40px;margin-bottom:56px}.crosslink h2{font-size:26px;letter-spacing:-.8px;margin-bottom:0}.crosslink .eyebrow{margin-bottom:12px}.crosslink p:not(.eyebrow){font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px}.related-tools a{color:var(--blue)}footer .related-tools{margin-top:4px}@media(max-width:700px){.crosslink{grid-template-columns:1fr;gap:18px;padding-block:32px;margin-bottom:40px}}
+.soon-pill{font-size:9px;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--blue);border-radius:999px;padding:2px 7px;white-space:nowrap}
+.self-hosted-page{max-width:900px;padding-block:60px 100px}.self-hosted-page h1{font-size:38px;letter-spacing:-1.2px;margin:0 0 14px}.self-hosted-page .lede{font-size:15px;line-height:1.8;color:var(--muted);margin:0 0 40px;max-width:560px}.self-hosted-page .mode-cards{margin-bottom:56px}.self-hosted-page .mode-cards p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
+.form-section{border-top:1px solid var(--line);padding-top:40px}.form-section h2{font-size:22px;letter-spacing:-.3px;margin:0 0 10px}.form-section p{font-size:14px;color:var(--muted);margin:0 0 20px}.notify-form{width:100%;border:1px solid var(--line);border-radius:10px;display:block}
+@media(max-width:700px){.self-hosted-page h1{font-size:30px}}

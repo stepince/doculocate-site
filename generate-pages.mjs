@@ -50,7 +50,7 @@ function render(page) {
 <a class="skip" href="#main">Skip to content</a>
 <header class="header wrap">
 <a class="brand" href="/" aria-label="DocuLocate home"><img src="/assets/icon.svg" width="32" height="32" alt="">Docu<span>Locate</span></a>
-<nav aria-label="Main navigation"><a href="/">Product</a>${nav}</nav>
+<nav aria-label="Main navigation"><a href="/">Product</a>${nav}<a href="/self-hosted/">Self-hosted <span class="soon-pill">Coming Soon</span></a></nav>
 <a class="button small" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a>
 </header>
 <main id="main">
@@ -66,7 +66,7 @@ ${page.sections.map((s) => `<section><h2>${esc(s.h2)}</h2>\n${s.html}</section>`
 </article>
 <section class="closing wrap"><p class="eyebrow">THE PASSAGE IS IN THERE.</p><h2>Find it in your own words.</h2><p>One document. Your question. The source you need.</p><a class="button" href="https://app.doculocate.com/" data-app-link>Try DocuLocate <span aria-hidden="true">↗</span></a></section>
 </main>
-<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p><p class="related-tools">Related tools: <a href="https://difffind.com/">DiffFind</a> — Semantic document comparison</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
+<footer class="wrap"><div><a href="/" class="brand"><img src="/assets/icon.svg" width="28" height="28" alt="">Docu<span>Locate</span></a><p>Semantic search for documents.</p><p class="related-tools">Related tools: <a href="https://difffind.com/">DiffFind</a> — Semantic document comparison</p></div><nav aria-label="Footer"><a href="/">Product</a>${nav}<a href="/faq/">FAQ</a><a href="/self-hosted/">Self-hosted</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 DocuLocate<br>doculocate.com</span></footer>
 </body>
 </html>
 `;
@@ -78,6 +78,6 @@ for (const page of pages) {
 }
 
 // Keep the sitemap in step with the page list.
-const urls = ['/', ...pages.map((p) => `/${p.slug}/`), '/privacy/', '/terms/'];
+const urls = ['/', ...pages.map((p) => `/${p.slug}/`), '/self-hosted/', '/privacy/', '/terms/'];
 await writeFile('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`Generated ${pages.length} pages and sitemap.xml`);
